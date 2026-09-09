@@ -19,6 +19,124 @@
 })();
 
 (function () {
+	const header = document.querySelector('.header');
+	if (!header) return;
+
+	function setHeaderHeightVar() {
+		document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+	}
+	setHeaderHeightVar();
+	window.addEventListener('resize', setHeaderHeightVar);
+
+	let lastScrollY = window.scrollY;
+	const scrollDeltaThreshold = 30;
+
+	window.addEventListener('scroll', () => {
+		const currentScrollY = window.scrollY;
+		const delta = currentScrollY - lastScrollY;
+
+		if (Math.abs(delta) < scrollDeltaThreshold) return;
+
+		const scrolledPastHeader = currentScrollY > header.offsetHeight + 150;
+		header.classList.toggle('header--hidden', delta > 0 && scrolledPastHeader);
+
+		lastScrollY = currentScrollY;
+	}, { passive: true });
+})();
+
+(function () {
+	document.querySelectorAll('[data-select]').forEach((wrap) => {
+		const trigger = wrap.querySelector('.select-custom__trigger');
+		const valueEl = wrap.querySelector('[data-select-value]');
+		const options = Array.from(wrap.querySelectorAll('.select-custom__option'));
+		const hiddenInput = wrap.querySelector('input[type="hidden"]');
+
+		function close() {
+			wrap.classList.remove('is-open');
+			trigger.setAttribute('aria-expanded', 'false');
+		}
+
+		function open() {
+			wrap.classList.add('is-open');
+			trigger.setAttribute('aria-expanded', 'true');
+		}
+
+		trigger.addEventListener('click', () => {
+			wrap.classList.contains('is-open') ? close() : open();
+		});
+
+		options.forEach((option) => {
+			option.addEventListener('click', () => {
+				options.forEach((o) => {
+					o.classList.remove('is-selected');
+					o.setAttribute('aria-selected', 'false');
+				});
+				option.classList.add('is-selected');
+				option.setAttribute('aria-selected', 'true');
+				valueEl.textContent = option.textContent;
+				valueEl.classList.toggle('is-placeholder', !option.dataset.value);
+				hiddenInput.value = option.dataset.value;
+				hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+				close();
+			});
+		});
+
+		document.addEventListener('click', (e) => {
+			if (!wrap.contains(e.target)) close();
+		});
+	});
+})();
+
+(function () {
+	const form = document.querySelector('.contact__form');
+	if (!form) return;
+
+	const fields = Array.from(form.querySelectorAll('input, select, textarea'));
+
+	function invalidTarget(field) {
+		return field.closest('.select-custom')?.querySelector('.select-custom__trigger') || field;
+	}
+
+	fields.forEach((field) => {
+		const clear = () => invalidTarget(field).classList.remove('is-invalid');
+		field.addEventListener('input', clear);
+		field.addEventListener('change', clear);
+	});
+
+	form.addEventListener('submit', (e) => {
+		let firstInvalid = null;
+
+		fields.forEach((field) => {
+			const target = invalidTarget(field);
+			if (field.checkValidity()) {
+				target.classList.remove('is-invalid');
+			} else {
+				target.classList.add('is-invalid');
+				if (!firstInvalid) firstInvalid = target;
+			}
+		});
+
+		if (firstInvalid) {
+			e.preventDefault();
+			firstInvalid.focus();
+		}
+	});
+})();
+
+(function () {
+	const textarea = document.getElementById('message');
+	if (!textarea) return;
+
+	function resize() {
+		textarea.style.height = 'auto';
+		textarea.style.height = `${textarea.scrollHeight}px`;
+	}
+
+	textarea.addEventListener('input', resize);
+	resize();
+})();
+
+(function () {
 	const track = document.getElementById('servicesTrack');
 	if (!track) return;
 
@@ -210,8 +328,18 @@
 
 	scrollBtn.addEventListener('click', () => {
 		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-		scrollBtn.classList.add('is-hidden');
 	});
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				scrollBtn.classList.toggle('is-hidden', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0 }
+	);
+
+	observer.observe(target);
 })();
 
 function whenFontsReady(callback) {
@@ -254,6 +382,22 @@ whenFontsReady(() => {
 	observer.observe(reviewsBand);
 });
 
+whenFontsReady(() => {
+	const qaCta = document.getElementById('qaCta');
+	if (!qaCta) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				qaCta.classList.toggle('is-visible', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	observer.observe(qaCta);
+});
+
 (function () {
 	const track = document.getElementById('reviewsTrack');
 	if (!track) return;
@@ -267,6 +411,17 @@ whenFontsReady(() => {
 	cards.forEach((clone) => track.appendChild(clone));
 
 	track.style.animationDuration = `${originalCount * 5}s`;
+})();
+
+(function () {
+	const pauseBtn = document.getElementById('reviewsPauseBtn');
+	if (!pauseBtn) return;
+
+	pauseBtn.addEventListener('click', () => {
+		const isPaused = pauseBtn.classList.toggle('is-paused');
+		pauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+		pauseBtn.setAttribute('aria-label', isPaused ? 'Resume reviews auto-scroll' : 'Pause reviews auto-scroll');
+	});
 })();
 
 (function () {
@@ -288,13 +443,43 @@ whenFontsReady(() => {
 })();
 
 (function () {
-	const items = Array.from(document.querySelectorAll('.qa__item'));
-	if (!items.length) return;
+	const tiles = document.querySelectorAll('.social__tile');
+	if (!tiles.length) return;
 
-	items.forEach((item) => {
-		const question = item.querySelector('.qa__question');
-		question.addEventListener('click', () => {
-			item.classList.toggle('is-open');
+	const observer = new IntersectionObserver(
+		(entries, obs) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				const img = entry.target;
+				const fullSrc = img.dataset.src;
+				if (fullSrc) {
+					img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true });
+					img.src = fullSrc;
+				}
+				obs.unobserve(img);
+			});
+		},
+		{ rootMargin: '200px' }
+	);
+
+	tiles.forEach((tile) => observer.observe(tile));
+})();
+
+(function () {
+	const groups = Array.from(document.querySelectorAll('.qa__group'));
+	if (!groups.length) return;
+
+	groups.forEach((group) => {
+		const items = Array.from(group.querySelectorAll('.qa__item'));
+		if (!items.length) return;
+
+		items.forEach((item) => {
+			const question = item.querySelector('.qa__question');
+			question.addEventListener('click', () => {
+				const wasOpen = item.classList.contains('is-open');
+				items.forEach((other) => other.classList.remove('is-open'));
+				item.classList.toggle('is-open', !wasOpen);
+			});
 		});
 	});
 })();
