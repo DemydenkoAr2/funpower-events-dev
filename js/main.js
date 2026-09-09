@@ -484,29 +484,3 @@ whenFontsReady(() => {
 	});
 })();
 
-(function () {
-	const navLinks = Array.from(document.querySelectorAll('.nav__link[data-section]'));
-	if (!navLinks.length) return;
-
-	const sections = navLinks
-		.map((link) => document.getElementById(link.dataset.section))
-		.filter(Boolean);
-	if (!sections.length) return;
-
-	function setActive(id) {
-		navLinks.forEach((link) => {
-			link.classList.toggle('is-active', link.dataset.section === id);
-		});
-	}
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) setActive(entry.target.id);
-			});
-		},
-		{ rootMargin: '-50% 0px -50% 0px', threshold: 0 }
-	);
-
-	sections.forEach((section) => observer.observe(section));
-})();
