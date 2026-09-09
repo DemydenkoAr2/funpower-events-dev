@@ -40,16 +40,16 @@
             <div class="container hero__inner">
                 <ul class="hero__lines">
                     <!-- <li>Turn Every Moment Into an Adventure!</li> -->
-                    <li>Big Fun.<br>Bigger Memнories.</li>
+                    <li>Big Fun.<br>Bigger Memories.</li>
                     <li>Let's Create a Party With...</li>
-                    <li><span class="hero__spark-line hero__brand hero__brand--color">FunPower Events<svg class="hero__spark" viewBox="0 0 100 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="0" width="8" height="30" rx="4"/><rect x="46" y="70" width="8" height="30" rx="4"/><rect x="0" y="46" width="30" height="8" rx="4"/><rect x="70" y="46" width="30" height="8" rx="4"/><rect x="46" y="0" width="8" height="22" rx="4" transform="rotate(45 50 50)"/><rect x="46" y="78" width="8" height="22" rx="4" transform="rotate(45 50 50)"/><rect x="0" y="46" width="22" height="8" rx="4" transform="rotate(45 50 50)"/><rect x="78" y="46" width="22" height="8" rx="4" transform="rotate(45 50 50)"/></g></svg></span></li>
+                    <li><span class="hero__spark-line hero__brand hero__brand--color">FunPower<br class="hero__brand-break"> Events</span></li>
                     <!-- <li><span class="hero__brand hero__brand--marker">FunPower Events</span></li> -->
                     <!-- <li><span class="hero__brand hero__brand--badge">FunPower Events</span></li> -->
                 </ul>
+                <button type="button" class="hero__scroll-btn" id="heroScrollBtn" aria-label="Scroll to Pick Your Party">
+                    <svg class="hero__scroll-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
             </div>
-            <button type="button" class="hero__scroll-btn" id="heroScrollBtn" aria-label="Scroll to Pick Your Party">
-                <svg class="hero__scroll-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
         </section>
 
         <section class="services" id="services">
@@ -128,7 +128,8 @@
             <div class="about__bg"></div>
             <div class="container about__inner">
                 <h2 class="about__title">About Us</h2>
-                <p class="about__text">FunPower Events started in August 2019 with one character — Tinka, the Pink Fairy — and one backyard party. Here's how a single costume turned into the Bay Area's go-to party crew.</p>
+                <img class="about__photo" src="img/Tinka.png" alt="Tinka the Pink Fairy, FunPower Events' founding character" loading="lazy">
+                <p class="about__text">FunPower Events started in August 2019 with one character, Tinka, the Pink Fairy, and one backyard party. Here's how a single costume turned into the Bay Area's go-to party crew.</p>
                 <a class="about__toggle" href="about.html"><span class="about__toggle-label">Read More</span><svg class="about__toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
         </section>
@@ -152,9 +153,11 @@
                     </div>
                 </div>
             </div>
-            <div class="reviews__band" id="reviewsBand">
-                <div class="reviews__band-bg"></div>
-                <div class="reviews__band-content">
+        </section>
+
+        <section class="reviews__band" id="reviewsBand">
+            <div class="reviews__band-bg"></div>
+            <div class="reviews__band-content">
                     <div class="reviews__source-group">
                         <button type="button" class="reviews__pause-btn" id="reviewsPauseBtn" aria-label="Pause reviews auto-scroll" aria-pressed="false">
                             <svg class="reviews__pause-icon reviews__pause-icon--pause" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
@@ -328,7 +331,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
         <section class="social" id="social">

@@ -3,18 +3,28 @@
 	const menu = document.getElementById('headerMobileMenu');
 	if (!burger || !menu) return;
 
+	function closeMenu() {
+		menu.classList.remove('is-open');
+		burger.classList.remove('is-open');
+		burger.setAttribute('aria-expanded', 'false');
+		document.documentElement.classList.remove('no-scroll');
+		document.body.classList.remove('no-scroll');
+	}
+
 	burger.addEventListener('click', () => {
 		const isOpen = menu.classList.toggle('is-open');
 		burger.classList.toggle('is-open', isOpen);
 		burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+		document.documentElement.classList.toggle('no-scroll', isOpen);
+		document.body.classList.toggle('no-scroll', isOpen);
 	});
 
 	menu.querySelectorAll('a').forEach((link) => {
-		link.addEventListener('click', () => {
-			menu.classList.remove('is-open');
-			burger.classList.remove('is-open');
-			burger.setAttribute('aria-expanded', 'false');
-		});
+		link.addEventListener('click', closeMenu);
+	});
+
+	menu.addEventListener('click', (e) => {
+		if (e.target === menu) closeMenu();
 	});
 })();
 
