@@ -205,7 +205,10 @@
 
 	function setPosition(animate) {
 		track.style.transition = animate ? '' : 'none';
-		track.style.transform = `translateX(-${index * getStep()}px)`;
+		const containerWidth = track.parentElement.getBoundingClientRect().width;
+		const cardWidth = allItems[0].getBoundingClientRect().width;
+		const centerOffset = (containerWidth - cardWidth) / 2;
+		track.style.transform = `translateX(${centerOffset - index * getStep()}px)`;
 		if (!animate) {
 			void track.offsetHeight;
 			track.style.transition = '';
@@ -408,11 +411,21 @@ whenFontsReady(() => {
 	observer.observe(qaCta);
 });
 
+function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
+	function update() {
+		const pxPerSecond = window.matchMedia('(max-width: 640px)').matches
+			? mobilePxPerSecond
+			: desktopPxPerSecond;
+		track.style.animationDuration = `${(track.scrollWidth / 2) / pxPerSecond}s`;
+	}
+	update();
+	window.addEventListener('resize', update);
+}
+
 (function () {
 	const track = document.getElementById('reviewsTrack');
 	if (!track) return;
 
-	const originalCount = track.children.length;
 	const cards = Array.from(track.children).map((card) => {
 		const clone = card.cloneNode(true);
 		clone.setAttribute('aria-hidden', 'true');
@@ -420,7 +433,24 @@ whenFontsReady(() => {
 	});
 	cards.forEach((clone) => track.appendChild(clone));
 
-	track.style.animationDuration = `${originalCount * 5}s`;
+	setMarqueeSpeed(track, 80, 30);
+})();
+
+(function () {
+	const band = document.getElementById('reviewsBand');
+	const track = document.getElementById('reviewsTrack');
+	if (!band || !track) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				track.classList.toggle('is-offscreen', !entry.isIntersecting);
+			});
+		},
+		{ threshold: 0 }
+	);
+
+	observer.observe(band);
 })();
 
 (function () {
@@ -441,15 +471,33 @@ whenFontsReady(() => {
 		const track = document.getElementById(id);
 		if (!track) return;
 
-		const originalCount = track.children.length;
 		Array.from(track.children).forEach((tile) => {
 			const clone = tile.cloneNode(true);
 			clone.setAttribute('aria-hidden', 'true');
 			track.appendChild(clone);
 		});
 
-		track.style.animationDuration = `${originalCount * 6}s`;
+		setMarqueeSpeed(track, 65, 25);
 	});
+})();
+
+(function () {
+	const gallery = document.querySelector('.social__gallery');
+	const tracks = ['socialTrackTop', 'socialTrackBottom']
+		.map((id) => document.getElementById(id))
+		.filter(Boolean);
+	if (!gallery || !tracks.length) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				tracks.forEach((track) => track.classList.toggle('is-offscreen', !entry.isIntersecting));
+			});
+		},
+		{ threshold: 0 }
+	);
+
+	observer.observe(gallery);
 })();
 
 (function () {

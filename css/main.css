@@ -473,10 +473,10 @@ main {
 
 .services__carousel {
 	overflow: hidden;
-	width: 80%;
+	width: 100vw;
 	flex: 1;
 	min-height: 0;
-	margin: 0 auto;
+	margin-left: calc(50% - 50vw);
 }
 
 .services__track {
@@ -582,7 +582,7 @@ main {
 	flex-direction: column;
 	justify-content: flex-start;
 	gap: 12px;
-	flex: 0 0 calc((100% - 24px) / 2);
+	flex: 0 0 40%;
 	height: 100%;
 	min-height: 240px;
 	padding: 24px;
@@ -704,6 +704,16 @@ main {
 	color: var(--color-ink);
 }
 
+.service-card--purple {
+	background-color: var(--color-plum);
+	color: #fff;
+}
+
+.service-card--pine {
+	background-color: var(--color-pine);
+	color: #fff;
+}
+
 .service-card--fuchsia .service-card__cta:hover {
 	color: var(--color-blossom);
 }
@@ -724,9 +734,17 @@ main {
 	color: var(--color-mint);
 }
 
+.service-card--purple .service-card__cta:hover {
+	color: var(--color-plum);
+}
+
+.service-card--pine .service-card__cta:hover {
+	color: var(--color-pine);
+}
+
 @media (max-width: 900px) {
 	.service-card {
-		flex-basis: 100%;
+		flex-basis: 70%;
 	}
 
 	.service-card__footer {
@@ -737,6 +755,28 @@ main {
 
 	.service-card__cta {
 		align-self: stretch;
+	}
+}
+
+@media (max-width: 600px) {
+	.service-card {
+		flex-basis: 86%;
+	}
+
+	.service-card__title {
+		font-size: 24px;
+	}
+
+	.service-card__text {
+		font-size: 16px;
+	}
+
+	.services__track {
+		gap: 16px;
+	}
+
+	.about__photo {
+		width: 90%;
 	}
 }
 
@@ -756,7 +796,7 @@ main {
 	margin: 0 auto;
 	width: calc(100% - 48px);
 	border-radius: 32px;
-	transition: top 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), bottom 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), max-width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), border-radius 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition: top 0.4s cubic-bezier(0.34, 2.2, 0.64, 1), bottom 0.4s cubic-bezier(0.34, 2.2, 0.64, 1), width 0.4s cubic-bezier(0.34, 2.2, 0.64, 1), max-width 0.4s cubic-bezier(0.34, 2.2, 0.64, 1), border-radius 0.25s cubic-bezier(0.34, 2.2, 0.64, 1);
 }
 
 .about__bg {
@@ -773,7 +813,7 @@ main {
 	width: 100%;
 	max-width: 100%;
 	border-radius: 0;
-	transition: top 0.7s ease, bottom 0.7s ease, width 0.7s ease, max-width 0.7s ease, border-radius 0.4s ease;
+	transition: top 0.4s ease, bottom 0.4s ease, width 0.4s ease, max-width 0.4s ease, border-radius 0.25s ease;
 }
 
 .about__inner {
@@ -829,7 +869,7 @@ main {
 	font-size: 16px;
 	padding: 18px 36px;
 	border-radius: 999px;
-	transition: background 120ms, color 120ms, padding 0.15s ease-in;
+	transition: background 120ms, color 120ms, padding 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .about__toggle:hover {
@@ -837,7 +877,6 @@ main {
 	color: var(--color-sky);
 	padding-left: 38px;
 	padding-right: 66px;
-	transition: background 120ms, color 120ms, padding 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .about__toggle-label {
@@ -846,7 +885,11 @@ main {
 
 .reviews {
 	background: #fff;
-	padding-top: 140px;
+	height: 80vh;
+	height: 80dvh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .reviews__header {
@@ -855,7 +898,7 @@ main {
 	align-items: center;
 	gap: 12px;
 	max-width: 640px;
-	margin: 0 auto 140px;
+	margin: 0 auto;
 	text-align: center;
 }
 
@@ -920,19 +963,11 @@ main {
 .reviews__band-content {
 	position: relative;
 	z-index: 1;
-	width: calc(100% - 48px);
-	max-width: 1400px;
+	width: 100%;
 	margin: 0 auto;
 	padding-top: 62px;
 	padding-bottom: 72px;
 	overflow: hidden;
-	transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), max-width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.reviews__band.is-visible .reviews__band-content {
-	width: 100%;
-	max-width: 100%;
-	transition: width 0.7s ease, max-width 0.7s ease;
 }
 
 .reviews__source-title {
@@ -1004,11 +1039,13 @@ main {
 	display: flex;
 	gap: 24px;
 	width: max-content;
+	will-change: transform;
 	animation: reviews-marquee 45s linear infinite;
 }
 
 .reviews__slider:hover .reviews__slider-track,
-.reviews__pause-btn.is-paused ~ .reviews__slider .reviews__slider-track {
+.reviews__pause-btn.is-paused ~ .reviews__slider .reviews__slider-track,
+.reviews__slider-track.is-offscreen {
 	animation-play-state: paused;
 }
 
@@ -1139,7 +1176,12 @@ main {
 	display: flex;
 	gap: 20px;
 	width: max-content;
+	will-change: transform;
 	animation: reviews-marquee 30s linear infinite;
+}
+
+.social__track.is-offscreen {
+	animation-play-state: paused;
 }
 
 #socialTrackBottom {
@@ -1258,7 +1300,7 @@ main {
 	font-size: 16px;
 	padding: 18px 36px;
 	border-radius: 999px;
-	transition: background 120ms, color 120ms, padding 0.15s ease-in;
+	transition: background 120ms, color 120ms, padding 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .qa__more-link:hover {
@@ -1266,7 +1308,6 @@ main {
 	color: #fff;
 	padding-left: 38px;
 	padding-right: 66px;
-	transition: background 120ms, color 120ms, padding 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .qa__item {
@@ -1603,8 +1644,8 @@ main {
 	align-items: center;
 	gap: 8px;
 	font-weight: 600;
-	font-size: 24px;
-	color: rgba(255, 255, 255, 0.75);
+	font-size: 18px;
+	color: rgba(255, 255, 255, 0.55);
 	transition: color 120ms;
 }
 
@@ -1624,20 +1665,24 @@ main {
 	flex-wrap: wrap;
 	gap: 12px;
 	padding-top: 24px;
+	padding-bottom: 16px;
 	border-top: 1px solid rgba(255, 255, 255, 0.15);
 	font-size: 14px;
 	color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 770px) {
+	.footer__columns {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 32px 24px;
+	}
 }
 
 @media (max-width: 640px) {
 	.footer__top {
 		flex-direction: column;
 		align-items: flex-start;
-	}
-
-	.footer__columns {
-		flex-direction: column;
-		gap: 32px;
 	}
 
 	.footer__bottom {
@@ -1750,33 +1795,6 @@ main {
 	}
 }
 
-.footer__wordmark {
-	width: 100vw;
-	margin-left: calc(50% - 50vw);
-	height: 0.55em;
-	padding: 24px 16px 0;
-	text-align: center;
-	white-space: nowrap;
-	overflow: hidden;
-	text-transform: uppercase;
-	font-weight: 900;
-	letter-spacing: -0.02em;
-	line-height: 1;
-	font-size: clamp(32px, 9vw, 140px);
-	box-sizing: content-box;
-}
-
-.footer__wordmark-fun {
-	color: #fff;
-}
-
-.footer__wordmark-power {
-	color: var(--color-mint);
-}
-
-.footer__wordmark-events {
-	color: var(--color-lemon);
-}
 
 .contact {
 	background: #fff;
