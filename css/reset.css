@@ -57,6 +57,11 @@ html {
 	-moz-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 	overflow-x: hidden;
+	-webkit-tap-highlight-color: transparent;
+}
+
+a, button, input, textarea, select, summary {
+	-webkit-tap-highlight-color: transparent;
 }
 
 img, picture, video, canvas, svg {

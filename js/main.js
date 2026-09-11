@@ -3,20 +3,34 @@
 	const menu = document.getElementById('headerMobileMenu');
 	if (!burger || !menu) return;
 
+	let savedScrollY = 0;
+
+	function openMenu() {
+		savedScrollY = window.scrollY;
+		menu.classList.add('is-open');
+		burger.classList.add('is-open');
+		burger.setAttribute('aria-expanded', 'true');
+		document.documentElement.classList.add('no-scroll');
+		document.body.style.top = `-${savedScrollY}px`;
+		document.body.classList.add('no-scroll');
+	}
+
 	function closeMenu() {
 		menu.classList.remove('is-open');
 		burger.classList.remove('is-open');
 		burger.setAttribute('aria-expanded', 'false');
 		document.documentElement.classList.remove('no-scroll');
 		document.body.classList.remove('no-scroll');
+		document.body.style.top = '';
+		window.scrollTo(0, savedScrollY);
 	}
 
 	burger.addEventListener('click', () => {
-		const isOpen = menu.classList.toggle('is-open');
-		burger.classList.toggle('is-open', isOpen);
-		burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-		document.documentElement.classList.toggle('no-scroll', isOpen);
-		document.body.classList.toggle('no-scroll', isOpen);
+		if (menu.classList.contains('is-open')) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
 	});
 
 	menu.querySelectorAll('a').forEach((link) => {
@@ -268,8 +282,13 @@
 	let dragStartOffset = 0;
 
 	function currentOffset() {
-		return index * getStep();
+		const containerWidth = track.parentElement.getBoundingClientRect().width;
+		const cardWidth = allItems[0].getBoundingClientRect().width;
+		const centerOffset = (containerWidth - cardWidth) / 2;
+		return centerOffset - index * getStep();
 	}
+
+	track.addEventListener('dragstart', (e) => e.preventDefault());
 
 	track.addEventListener('pointerdown', (e) => {
 		isDragging = true;
@@ -284,7 +303,7 @@
 		if (!isDragging) return;
 		const delta = e.clientX - dragStartX;
 		if (Math.abs(delta) > 5) didDrag = true;
-		track.style.transform = `translateX(${-(dragStartOffset - delta)}px)`;
+		track.style.transform = `translateX(${dragStartOffset + delta}px)`;
 	});
 
 	function endDrag(e) {
@@ -314,6 +333,14 @@
 				e.preventDefault();
 				e.stopPropagation();
 				didDrag = false;
+				return;
+			}
+
+			const hit = document.elementFromPoint(e.clientX, e.clientY);
+			const link = hit && hit.closest('a');
+			if (link && track.contains(link)) {
+				e.preventDefault();
+				window.location.href = link.href;
 			}
 		},
 		true
@@ -454,14 +481,159 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 })();
 
 (function () {
-	const pauseBtn = document.getElementById('reviewsPauseBtn');
-	if (!pauseBtn) return;
+	const slider = document.querySelector('.reviews__slider');
+	const track = document.getElementById('reviewsTrack');
+	if (!slider || !track) return;
 
-	pauseBtn.addEventListener('click', () => {
-		const isPaused = pauseBtn.classList.toggle('is-paused');
-		pauseBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
-		pauseBtn.setAttribute('aria-label', isPaused ? 'Resume reviews auto-scroll' : 'Pause reviews auto-scroll');
+	const HOVER_DELAY = 300;
+	const COAST_DURATION = 450;
+	const TAP_MOVE_THRESHOLD = 6;
+	const TAP_PAUSE_DURATION = 2000;
+
+	let hoverTimer = null;
+	let tapResumeTimer = null;
+	let isStopped = false;
+	let isDragging = false;
+	let isManuallyPaused = false;
+	let dragMoved = false;
+	let pointerType = 'mouse';
+	let rafId = null;
+	let savedDuration = parseFloat(getComputedStyle(track).animationDuration) || 45;
+	let dragStartX = 0;
+	let dragStartOffset = 0;
+
+	function getTranslateX(el) {
+		const matrix = new DOMMatrixReadOnly(getComputedStyle(el).transform);
+		return matrix.m41;
+	}
+
+	function freezeAt(x) {
+		savedDuration = parseFloat(getComputedStyle(track).animationDuration) || savedDuration;
+		track.style.transition = 'none';
+		track.style.animation = 'none';
+		track.style.transform = `translateX(${x}px)`;
+		void track.offsetWidth;
+		isStopped = true;
+	}
+
+	function decelerateToStop() {
+		if (isDragging || isManuallyPaused) return;
+		savedDuration = parseFloat(getComputedStyle(track).animationDuration) || savedDuration;
+		const totalDistance = track.scrollWidth / 2;
+		const startX = getTranslateX(track);
+		const v0 = totalDistance / (savedDuration * 1000);
+
+		track.style.transition = 'none';
+		track.style.animation = 'none';
+		track.style.transform = `translateX(${startX}px)`;
+		void track.offsetWidth;
+		isStopped = true;
+
+		const startTime = performance.now();
+
+		function step(now) {
+			const t = Math.min(now - startTime, COAST_DURATION);
+			const distance = v0 * t - 0.5 * (v0 / COAST_DURATION) * t * t;
+			track.style.transform = `translateX(${startX - distance}px)`;
+			rafId = t < COAST_DURATION ? requestAnimationFrame(step) : null;
+		}
+		rafId = requestAnimationFrame(step);
+	}
+
+	function resumeFromStop() {
+		if (!isStopped || isManuallyPaused) return;
+		isStopped = false;
+		if (rafId) {
+			cancelAnimationFrame(rafId);
+			rafId = null;
+		}
+
+		const currentX = getTranslateX(track);
+		const totalDistance = track.scrollWidth / 2;
+		const elapsedRatio = (((-currentX) % totalDistance) + totalDistance) % totalDistance / totalDistance;
+		const elapsedSeconds = elapsedRatio * savedDuration;
+
+		track.style.transition = 'none';
+		track.style.transform = '';
+		track.style.animation = `reviews-marquee ${savedDuration}s linear infinite`;
+		track.style.animationDelay = `-${elapsedSeconds}s`;
+	}
+
+	slider.addEventListener('mouseenter', () => {
+		clearTimeout(hoverTimer);
+		hoverTimer = setTimeout(decelerateToStop, HOVER_DELAY);
 	});
+
+	slider.addEventListener('mouseleave', () => {
+		clearTimeout(hoverTimer);
+		if (!isDragging) resumeFromStop();
+	});
+
+	track.addEventListener('pointerdown', (e) => {
+		clearTimeout(hoverTimer);
+		clearTimeout(tapResumeTimer);
+		if (rafId) {
+			cancelAnimationFrame(rafId);
+			rafId = null;
+		}
+		isDragging = true;
+		dragMoved = false;
+		pointerType = e.pointerType;
+		dragStartX = e.clientX;
+		dragStartOffset = getTranslateX(track);
+		freezeAt(dragStartOffset);
+		try {
+			track.setPointerCapture(e.pointerId);
+		} catch (err) {
+			/* ignore: pointer already released */
+		}
+	});
+
+	track.addEventListener('pointermove', (e) => {
+		if (!isDragging) return;
+		const totalDistance = track.scrollWidth / 2;
+		const delta = e.clientX - dragStartX;
+		if (Math.abs(delta) > TAP_MOVE_THRESHOLD) dragMoved = true;
+		let x = (dragStartOffset + delta) % totalDistance;
+		if (x > 0) x -= totalDistance;
+		track.style.transform = `translateX(${x}px)`;
+	});
+
+	function endDrag() {
+		if (!isDragging) return;
+		isDragging = false;
+
+		if (!dragMoved && pointerType === 'touch') {
+			tapResumeTimer = setTimeout(resumeFromStop, TAP_PAUSE_DURATION);
+		} else {
+			resumeFromStop();
+		}
+	}
+
+	track.addEventListener('pointerup', endDrag);
+	track.addEventListener('pointercancel', endDrag);
+
+	const pauseBtn = document.getElementById('reviewsPauseBtn');
+	if (pauseBtn) {
+		pauseBtn.addEventListener('click', () => {
+			isManuallyPaused = !isManuallyPaused;
+			pauseBtn.classList.toggle('is-paused', isManuallyPaused);
+			pauseBtn.setAttribute('aria-pressed', isManuallyPaused ? 'true' : 'false');
+			pauseBtn.setAttribute('aria-label', isManuallyPaused ? 'Resume reviews auto-scroll' : 'Pause reviews auto-scroll');
+
+			if (isManuallyPaused) {
+				clearTimeout(hoverTimer);
+				clearTimeout(tapResumeTimer);
+				if (rafId) {
+					cancelAnimationFrame(rafId);
+					rafId = null;
+				}
+				freezeAt(getTranslateX(track));
+			} else {
+				resumeFromStop();
+			}
+		});
+	}
 })();
 
 (function () {
@@ -539,6 +711,14 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 				item.classList.toggle('is-open', !wasOpen);
 			});
 		});
+
+		const toggle = group.querySelector('.qa__group-toggle');
+		if (toggle) {
+			toggle.addEventListener('click', () => {
+				const isExpanded = group.classList.toggle('is-expanded');
+				toggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+			});
+		}
 	});
 })();
 
