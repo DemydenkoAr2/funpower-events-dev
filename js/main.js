@@ -1,4 +1,25 @@
 (function () {
+	const nav = document.querySelector('.nav');
+	if (!nav) return;
+
+	const targets = [
+		document.querySelector('.header__mobile-nav'),
+		document.getElementById('footerNav'),
+	].filter(Boolean);
+	if (!targets.length) return;
+
+	const links = nav.querySelectorAll('.nav__link');
+	targets.forEach((target) => {
+		links.forEach((link) => {
+			const clone = document.createElement('a');
+			clone.href = link.getAttribute('href');
+			clone.textContent = link.textContent;
+			target.appendChild(clone);
+		});
+	});
+})();
+
+(function () {
 	const burger = document.getElementById('headerBurger');
 	const menu = document.getElementById('headerMobileMenu');
 	if (!burger || !menu) return;
@@ -39,6 +60,26 @@
 
 	menu.addEventListener('click', (e) => {
 		if (e.target === menu) closeMenu();
+	});
+})();
+
+(function () {
+	function setStableVh() {
+		document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+	}
+
+	let lastWidth = window.innerWidth;
+	setStableVh();
+
+	window.addEventListener('resize', () => {
+		if (window.innerWidth === lastWidth) return;
+		lastWidth = window.innerWidth;
+		setStableVh();
+	});
+
+	window.addEventListener('orientationchange', () => {
+		lastWidth = window.innerWidth;
+		setStableVh();
 	});
 })();
 
@@ -438,6 +479,57 @@ whenFontsReady(() => {
 	observer.observe(qaCta);
 });
 
+whenFontsReady(() => {
+	const servicesMore = document.getElementById('servicesMore');
+	if (!servicesMore) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				servicesMore.classList.toggle('is-visible', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	observer.observe(servicesMore);
+});
+
+(function () {
+	const numbers = document.querySelectorAll('.growth-stats__number[data-count-to]');
+	if (!numbers.length) return;
+
+	function animateCount(el) {
+		const target = parseInt(el.dataset.countTo, 10);
+		const suffix = el.dataset.suffix || '';
+		const duration = 1400;
+		const start = performance.now();
+
+		function tick(now) {
+			const progress = Math.min((now - start) / duration, 1);
+			const eased = 1 - Math.pow(1 - progress, 3);
+			const value = Math.round(target * eased);
+			el.textContent = `${value.toLocaleString('en-US')}${suffix}`;
+			if (progress < 1) requestAnimationFrame(tick);
+		}
+
+		requestAnimationFrame(tick);
+	}
+
+	const observer = new IntersectionObserver(
+		(entries, obs) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				animateCount(entry.target);
+				obs.unobserve(entry.target);
+			});
+		},
+		{ threshold: 0.5 }
+	);
+
+	numbers.forEach((el) => observer.observe(el));
+})();
+
 function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 	function update() {
 		const pxPerSecond = window.matchMedia('(max-width: 640px)').matches
@@ -701,24 +793,23 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 
 	groups.forEach((group) => {
 		const items = Array.from(group.querySelectorAll('.qa__item'));
-		if (!items.length) return;
+		const toggle = group.querySelector('.qa__group-toggle');
 
-		items.forEach((item) => {
-			const question = item.querySelector('.qa__question');
-			question.addEventListener('click', () => {
+		group.addEventListener('click', (e) => {
+			const question = e.target.closest('.qa__question');
+			if (question) {
+				const item = question.closest('.qa__item');
 				const wasOpen = item.classList.contains('is-open');
 				items.forEach((other) => other.classList.remove('is-open'));
 				item.classList.toggle('is-open', !wasOpen);
-			});
-		});
+				return;
+			}
 
-		const toggle = group.querySelector('.qa__group-toggle');
-		if (toggle) {
-			toggle.addEventListener('click', () => {
+			if (toggle && e.target.closest('.qa__group-toggle') === toggle) {
 				const isExpanded = group.classList.toggle('is-expanded');
 				toggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-			});
-		}
+			}
+		});
 	});
 })();
 

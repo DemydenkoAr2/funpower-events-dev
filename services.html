@@ -24,13 +24,7 @@
             </button>
         </div>
         <div class="header__mobile-menu" id="headerMobileMenu">
-            <nav class="header__mobile-nav">
-                <a href="index.html">Home</a>
-                <a href="services.html">Services</a>
-                <a href="about.html">About</a>
-                <a href="qa.html">Q&amp;A</a>
-                <a href="contact.html">Contact</a>
-            </nav>
+            <nav class="header__mobile-nav"></nav>
             <a class="btn btn--primary header__call-btn" href="tel:+14156979668">Call Us</a>
         </div>
     </header>
@@ -38,70 +32,145 @@
     <main>
         <section class="service-page">
             <div class="container service-page__header">
-                <h1 class="about-page__title">Our Services</h1>
-                <p class="service-page__text">From backyard birthday parties to full-blown holiday takeovers — pick the experience that fits your celebration, or mix and match a few.</p>
+                <h1 class="about-page__title">The Best Parties in the Bay&nbsp;Area</h1>
+                <p class="service-page__text">Foam, lasers, characters, Nerf, UV - pick your fun.</p>
             </div>
 
-            <div class="container services-page__grid">
-                <div class="services-page__card service-card--fuchsia">
-                    <img class="services-page__card-photo" src="img/web/party.jpg" alt="Kids party in action" loading="lazy" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">Kids Parties</span>
-                            <span class="service-card__text">Character-themed parties with pro entertainers.</span>
-                        </div>
-                        <a class="service-card__cta" href="kids-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <div class="container services-page__spotlight">
+                <div class="services-spotlight-card service-card--fuchsia">
+                    <div class="services-spotlight-card__media">
+                        <img class="services-spotlight-card__photo" src="img/web/party.jpg" alt="Kids party in action" loading="lazy" draggable="false">
+                    </div>
+                    <div class="services-spotlight-card__body">
+                        <span class="services-featured-card__badge">Most Popular</span>
+                        <span class="services-featured-card__title">Kids Parties</span>
+                        <p class="services-featured-card__text">Character-themed birthday parties with a professional entertainer who leads games, face painting, and dancing.</p>
+                        <ul class="services-featured-card__facts">
+                            <li>Ages 2–10</li>
+                            <li>Character entertainer included</li>
+                            <li>Games, face painting &amp; dance party</li>
+                        </ul>
+                        <a class="service-card__cta services-featured-card__cta" href="kids-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                     </div>
                 </div>
-                <div class="services-page__card service-card--sky">
-                    <img class="services-page__card-photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">Foam Party</span>
-                            <span class="service-card__text">Towering foam mountains, safe and mess-free.</span>
+            </div>
+
+        </section>
+
+        <section class="services-page__carousel-section" id="servicesMore">
+            <div class="services-page__carousel-bg"></div>
+            <div class="container">
+                <h2 class="services-page__carousel-title">More Ways to Party</h2>
+                <div class="services-page__rows">
+                    <div class="services-row accent-raspberry">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy" style="object-position: center 20%;" draggable="false">
                         </div>
-                        <a class="service-card__cta" href="foam-party.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Mobile Laser Tag</span>
+                            <p class="services-featured-card__text">Tactical laser gear and inflatable bunkers show up right in your backyard or park for a full battle-arena experience.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Pro gear delivered &amp; set up</li>
+                                <li>Capture-the-flag &amp; team deathmatch</li>
+                                <li>Any yard, park, or driveway</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="mobile-laser-tag.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row services-row--reverse accent-sky">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Foam Party</span>
+                            <p class="services-featured-card__text">We bring the foam machine, build a backyard-sized mountain of bubbles, and let the kids dive right in.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Kid-safe, tear-free foam</li>
+                                <li>We bring everything</li>
+                                <li>Easy, mess-free cleanup</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="foam-party.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row accent-plum">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/uv2.jpg" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">UV Paint</span>
+                            <p class="services-featured-card__text">Step into our giant blacked-out dome for a glow-paint party — UV paint and blacklights turn it into a rave for kids.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Glow-reactive paint &amp; blacklights</li>
+                                <li>Non-toxic, washes out easy</li>
+                                <li>Blacked-out dome included</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="uv-paint.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row services-row--reverse accent-teal">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/nerf.jpg" alt="Kid with Nerf blaster gear" loading="lazy" style="object-position: center 20%;" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Nerf Battles</span>
+                            <p class="services-featured-card__text">Full tactical gear and a battlefield of inflatable bunkers turn any backyard into a Nerf battle arena.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Blasters &amp; eye protection for all</li>
+                                <li>Inflatable obstacle course</li>
+                                <li>Hosted rounds, every age</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="nerf-battles.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row accent-orange">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/halloween.jpg" alt="Kids in Halloween costumes at a spooky party" loading="lazy" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Halloween Parties</span>
+                            <p class="services-featured-card__text">Spooky-but-fun costume parties with games, a haunted-house vibe, and trick-or-treat activities built right in.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Costume-friendly games</li>
+                                <li>Spook level tuned to age</li>
+                                <li>Trick-or-treat built in</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="halloween-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row services-row--reverse accent-red">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/christmas.jpg" alt="Kids celebrating a Christmas holiday party" loading="lazy" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Christmas Parties</span>
+                            <p class="services-featured-card__text">Festive holiday parties complete with a visit from Santa, winter games, and cocoa-and-cookies energy for the family.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Visit from Santa</li>
+                                <li>Fake-snow winter games</li>
+                                <li>Flexible weekday/weekend timing</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="christmas-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="services-row accent-mint">
+                        <div class="services-row__media">
+                            <img class="services-row__photo" src="img/web/seasonal.jpg" alt="Kids celebrating a seasonal party" loading="lazy" draggable="false">
+                        </div>
+                        <div class="services-row__body">
+                            <span class="services-featured-card__title">Seasonal Parties</span>
+                            <p class="services-featured-card__text">Themed fun for every season — spring, summer, and everything between, built around whatever you're celebrating.</p>
+                            <ul class="services-featured-card__facts">
+                                <li>Themed for any occasion</li>
+                                <li>Built for outdoor spaces</li>
+                                <li>Mix &amp; match add-ons</li>
+                            </ul>
+                            <a class="service-card__cta services-featured-card__cta" href="seasonal-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        </div>
                     </div>
                 </div>
-                <div class="services-page__card service-card--plum">
-                    <img class="services-page__card-photo" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy" style="object-position: center 20%;" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">Mobile Laser Tag</span>
-                            <span class="service-card__text">Tactical laser battles, pro gear included.</span>
-                        </div>
-                        <a class="service-card__cta" href="mobile-laser-tag.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    </div>
-                </div>
-                <div class="services-page__card service-card--vanilla">
-                    <img class="services-page__card-photo" src="img/web/uv2.jpg" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">UV Paint</span>
-                            <span class="service-card__text">Glow-paint party inside our giant blacked-out dome.</span>
-                        </div>
-                        <a class="service-card__cta" href="uv-paint.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    </div>
-                </div>
-                <div class="services-page__card service-card--teal">
-                    <img class="services-page__card-photo" src="img/web/nerf.jpg" alt="Kid with Nerf blaster gear" loading="lazy" style="object-position: center 20%;" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">Nerf Battles</span>
-                            <span class="service-card__text">Epic Nerf blaster battles with full tactical gear included.</span>
-                        </div>
-                        <a class="service-card__cta" href="nerf-battles.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    </div>
-                </div>
-                <div class="services-page__card service-card--raspberry">
-                    <img class="services-page__card-photo" src="img/web/seasonal.jpg" alt="Kids celebrating a seasonal party" loading="lazy" draggable="false">
-                    <div class="service-card__footer">
-                        <div class="service-card__info">
-                            <span class="service-card__title">Seasonal Parties</span>
-                            <span class="service-card__text">Themed fun for every season — spring, summer, Halloween, Christmas, and everything between.</span>
-                        </div>
-                        <a class="service-card__cta" href="seasonal-parties.html"><span class="service-card__cta-label">Learn More</span><svg class="service-card__cta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                    </div>
+                <div class="services-page__socials">
+                    <a class="services-page__social" href="https://www.instagram.com/funpowerevents" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg><span>Instagram</span></a>
+                    <a class="services-page__social" href="https://www.facebook.com/funpowerevents/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 9V6.5C14 5.67 14.67 5 15.5 5H17V2H14.5C12.01 2 10 4.01 10 6.5V9H7V12H10V22H14V12H16.5L17 9H14Z" fill="currentColor"/></svg><span>Facebook</span></a>
                 </div>
             </div>
         </section>
@@ -131,13 +200,8 @@
                     <p class="footer__cta">Have an idea? <a href="contact.html">Get in touch</a></p>
                 </div>
                 <div class="footer__columns">
-                    <div class="footer__col">
+                    <div class="footer__col" id="footerNav">
                         <h3 class="footer__col-title">Pages</h3>
-                        <a href="index.html">Home</a>
-                        <a href="services.html">Services</a>
-                        <a href="about.html">About</a>
-                        <a href="qa.html">Q&amp;A</a>
-                        <a href="contact.html">Contact</a>
                     </div>
                     <div class="footer__col">
                         <h3 class="footer__col-title">Services</h3>
