@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
     <header class="header">
         <div class="container header__inner">
             <a class="logo" href="index.html">FunPower Events</a>
@@ -33,8 +38,11 @@
         <section class="service-page">
             <div class="container service-page__header">
                 <h1 class="about-page__title">Mobile Laser Tag</h1>
-                <img class="service-page__photo img--top" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy">
                 <p class="service-page__text">Tactical laser gear and inflatable bunkers show up right in your backyard or park for a full battle-arena experience — no venue booking required.</p>
+            </div>
+
+            <div class="container service-page__photo-wrap">
+                <img class="service-page__photo img--top" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy">
             </div>
 
             <div class="container service-page__values">
@@ -49,6 +57,97 @@
                 <div class="service-page__value service-page__value--mint">
                     <h3>Any Yard, Any Park</h3>
                     <p>All we need is open space — we adapt the battle zone to fit your backyard, park, or driveway.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="social">
+            <div class="container">
+                <div class="social__header">
+                    <h2 class="social__title">Mobile Laser Tag in Action</h2>
+                    <p class="social__text">Real moments from real celebrations</p>
+                </div>
+                <div class="social__gallery">
+                    <div class="social__row">
+                        <div class="social__track" id="socialTrackTop">
+                            <img class="social__tile" src="img/gallery/tiny/13.jpg" data-src="img/gallery/13.jpg" alt="Kid with laser tag gun, FunPower Events banner">
+                            <img class="social__tile" src="img/gallery/tiny/14.jpg" data-src="img/gallery/14.jpg" alt="Kid smiling with laser tag gear">
+                            <img class="social__tile" src="img/gallery/tiny/15.jpg" data-src="img/gallery/15.jpg" alt="Kids playing laser tag on the field">
+                            <img class="social__tile" src="img/gallery/tiny/16.jpg" data-src="img/gallery/16.jpg" alt="Group of kids with laser tag gear">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-about" id="serviceAbout">
+            <div class="service-about__bg"></div>
+            <div class="container service-about__inner">
+                <p class="about__text">Whether you're 8 or 80, our mobile laser tag brings the thrill of the battlefield right to your backyard, park, or event. Dodge behind inflatable bunkers, outsmart your friends, and unleash your inner action hero—all with safe, high-tech taggers. No bruises, no mess, just nonstop fun. Perfect for birthdays, team building, family reunions, or just an epic Saturday. We bring the game, you bring the squad. Who's ready to tag and brag?</p>
+            </div>
+        </section>
+
+        <section class="qa" id="serviceQa">
+            <div class="container">
+                <div class="qa__header">
+                    <h2 class="qa__title">Questions &amp; Answers</h2>
+                    <p class="qa__text">Mobile Laser Tag FAQs</p>
+                </div>
+                <div class="service-qa service-qa--mint">
+                    <div class="qa__group is-expanded">
+                        <div class="qa__group-body">
+                            <div class="qa__list">
+                                <article class="qa__item is-open">
+                                    <button type="button" class="qa__question">
+                                        <span>Is it safe?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>Yes — our taggers use light-based sensors, not paintballs or projectiles, so there's no bruising or mess.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>Do you provide the inflatable bunkers?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>Yes, we bring and set up all the gear — bunkers, taggers, and everything else needed for a full battle-arena experience.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>How many players can join?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>We can scale from a small backyard squad up to a bigger battle-royale group — just let us know your headcount when booking.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>Do you need a special venue?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>No — we set up in your backyard, a park, or any open space, no venue booking required.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-qa__cta">
+                        <p class="service-qa__cta-text">Still have questions?</p>
+                        <a class="qa__more-link" href="qa.html"><span>Visit Q&amp;A Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
                 </div>
             </div>
         </section>

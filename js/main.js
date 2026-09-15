@@ -449,6 +449,22 @@ whenFontsReady(() => {
 });
 
 whenFontsReady(() => {
+	const serviceAbout = document.getElementById('serviceAbout');
+	if (!serviceAbout) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				serviceAbout.classList.toggle('is-visible', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	observer.observe(serviceAbout);
+});
+
+whenFontsReady(() => {
 	const originStory = document.getElementById('originStory');
 	if (!originStory) return;
 
@@ -506,7 +522,7 @@ whenFontsReady(() => {
 				servicesMore.classList.toggle('is-visible', entry.isIntersecting);
 			});
 		},
-		{ threshold: 0.2 }
+		{ threshold: 0, rootMargin: '0px 0px -20% 0px' }
 	);
 
 	observer.observe(servicesMore);
@@ -881,26 +897,5 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 	window.addEventListener('resize', () => scrollToIndex(currentIndex()));
 
 	update();
-})();
-
-(function () {
-	const cards = document.querySelectorAll('.why-us__card');
-	if (!cards.length) return;
-
-	const observer = new IntersectionObserver(
-		(entries, obs) => {
-			entries.forEach((entry) => {
-				if (!entry.isIntersecting) return;
-				const el = entry.target;
-				const index = Array.from(cards).indexOf(el);
-				const delay = (index % 3) * 90;
-				setTimeout(() => el.classList.add('is-visible'), delay);
-				obs.unobserve(el);
-			});
-		},
-		{ rootMargin: '0px 0px -55% 0px', threshold: 0 }
-	);
-
-	cards.forEach((card) => observer.observe(card));
 })();
 

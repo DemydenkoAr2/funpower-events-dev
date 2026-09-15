@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
     <header class="header">
         <div class="container header__inner">
             <a class="logo" href="index.html">FunPower Events</a>
@@ -33,8 +38,11 @@
         <section class="service-page">
             <div class="container service-page__header">
                 <h1 class="about-page__title">Foam Party</h1>
-                <img class="service-page__photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy">
                 <p class="service-page__text">We bring the foam machine, build a backyard-sized mountain of bubbles, and let the kids dive right in — mess-free cleanup included.</p>
+            </div>
+
+            <div class="container service-page__photo-wrap">
+                <img class="service-page__photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy">
             </div>
 
             <div class="container service-page__values">
@@ -49,6 +57,97 @@
                 <div class="service-page__value service-page__value--mint">
                     <h3>Easy Cleanup</h3>
                     <p>The foam breaks down and drains away on its own, so there's no soggy mess left behind.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="social">
+            <div class="container">
+                <div class="social__header">
+                    <h2 class="social__title">Foam Party in Action</h2>
+                    <p class="social__text">Real moments from real celebrations</p>
+                </div>
+                <div class="social__gallery">
+                    <div class="social__row">
+                        <div class="social__track" id="socialTrackTop">
+                            <img class="social__tile" src="img/gallery/tiny/1.jpg" data-src="img/gallery/1.jpg" alt="Kids playing in foam party">
+                            <img class="social__tile" src="img/gallery/tiny/2.jpg" data-src="img/gallery/2.jpg" alt="Kid covered in foam, smiling">
+                            <img class="social__tile" src="img/gallery/tiny/3.jpg" data-src="img/gallery/3.jpg" alt="Two kids goofing around in foam">
+                            <img class="social__tile" src="img/gallery/tiny/4.jpg" data-src="img/gallery/4.jpg" alt="Group of kids laughing in foam party">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-about" id="serviceAbout">
+            <div class="service-about__bg"></div>
+            <div class="container service-about__inner">
+                <p class="about__text">Looking for a fun and relaxing way to cool off and entertain guests of all ages? Our foam parties create a soft, fluffy sea of bubbles that's perfect for dancing, laughing, and enjoying the moment. Kids can play and splash safely, while adults kick back and enjoy the light, clean foam drifting through the air. It's a great way to bring people together—whether for a birthday, summer gathering, or just because. No stress, no mess—just simple, refreshing fun in every bubble.</p>
+            </div>
+        </section>
+
+        <section class="qa" id="serviceQa">
+            <div class="container">
+                <div class="qa__header">
+                    <h2 class="qa__title">Questions &amp; Answers</h2>
+                    <p class="qa__text">Foam Party FAQs</p>
+                </div>
+                <div class="service-qa service-qa--sky">
+                    <div class="qa__group is-expanded">
+                        <div class="qa__group-body">
+                            <div class="qa__list">
+                                <article class="qa__item is-open">
+                                    <button type="button" class="qa__question">
+                                        <span>Does the foam stain clothes or the grass?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>No — our foam is kid-safe and tear-free, and it rinses out clean from clothes, skin, and grass.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>How much space do you need?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>A foam party fits almost any yard, driveway, or open area — just let us know your space when you book.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>What age is a foam party best for?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>All ages — it's just as popular with adults as it is with kids, so don't be surprised if everyone ends up jumping in.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>How long does the foam last?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>We keep the foam machine running for the full length of your booked time, so the fun keeps going the whole party.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-qa__cta">
+                        <p class="service-qa__cta-text">Still have questions?</p>
+                        <a class="qa__more-link" href="qa.html"><span>Visit Q&amp;A Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
                 </div>
             </div>
         </section>

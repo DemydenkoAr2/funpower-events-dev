@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </svg>
     <header class="header">
         <div class="container header__inner">
             <a class="logo" href="index.html">FunPower Events</a>
@@ -33,8 +38,11 @@
         <section class="service-page">
             <div class="container service-page__header">
                 <h1 class="about-page__title">UV Paint</h1>
-                <img class="service-page__photo" src="img/web/uv2.jpg" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy">
                 <p class="service-page__text">Step into our giant blacked-out dome for a glow-in-the-dark paint party — UV paint, blacklights, and music turn any celebration into a rave for kids.</p>
+            </div>
+
+            <div class="container service-page__photo-wrap">
+                <img class="service-page__photo" src="img/web/uv2.jpg" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy">
             </div>
 
             <div class="container service-page__values">
@@ -49,6 +57,97 @@
                 <div class="service-page__value service-page__value--mint">
                     <h3>Dome Included</h3>
                     <p>We bring the blacked-out dome tent, so there's no need to darken a room in your house.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="social">
+            <div class="container">
+                <div class="social__header">
+                    <h2 class="social__title">UV Paint in Action</h2>
+                    <p class="social__text">Real moments from real celebrations</p>
+                </div>
+                <div class="social__gallery">
+                    <div class="social__row">
+                        <div class="social__track" id="socialTrackTop">
+                            <img class="social__tile" src="img/gallery/tiny/2.jpg" data-src="img/gallery/2.jpg" alt="Kid covered in foam, smiling">
+                            <img class="social__tile" src="img/gallery/tiny/10.jpg" data-src="img/gallery/10.jpg" alt="Kids with glitter face paint">
+                            <img class="social__tile" src="img/gallery/tiny/11.jpg" data-src="img/gallery/11.jpg" alt="Entertainer with group of girls">
+                            <img class="social__tile" src="img/gallery/tiny/12.jpg" data-src="img/gallery/12.jpg" alt="Kid with birthday cake and costumed entertainer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-about" id="serviceAbout">
+            <div class="service-about__bg"></div>
+            <div class="container service-about__inner">
+                <p class="about__text">Turn out the lights and crank up the energy! Glo Wild is a fully staffed, multi-sensory interactive festival brought directly to your location. We combine hands-on sensory crafting, custom mixology, and an epic neon paint celebration inside our massive, blacked-out 20x16ft Immersive Glow Dome.</p>
+            </div>
+        </section>
+
+        <section class="qa" id="serviceQa">
+            <div class="container">
+                <div class="qa__header">
+                    <h2 class="qa__title">Questions &amp; Answers</h2>
+                    <p class="qa__text">UV Paint FAQs</p>
+                </div>
+                <div class="service-qa service-qa--plum">
+                    <div class="qa__group is-expanded">
+                        <div class="qa__group-body">
+                            <div class="qa__list">
+                                <article class="qa__item is-open">
+                                    <button type="button" class="qa__question">
+                                        <span>Does the paint stain skin or clothes?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>No — our UV paint is washable and rinses off easily from skin and most fabrics.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>Do you provide the blacked-out dome?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>Yes — we bring and set up the full 20x16ft Immersive Glow Dome on-site, no venue booking needed.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>Is it safe for younger kids?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>Yes — the paint is non-toxic and appropriate for most ages, and we tailor the sensory activities to the group.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="qa__item">
+                                    <button type="button" class="qa__question">
+                                        <span>How much space do you need?</span>
+                                        <svg class="qa__icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                    </button>
+                                    <div class="qa__answer">
+                                        <div class="qa__answer-inner">
+                                            <p>We just need enough room to set up the dome — a backyard, driveway, or indoor space all work fine.</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="service-qa__cta">
+                        <p class="service-qa__cta-text">Still have questions?</p>
+                        <a class="qa__more-link" href="qa.html"><span>Visit Q&amp;A Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
                 </div>
             </div>
         </section>

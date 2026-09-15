@@ -35,38 +35,45 @@
                 <h1 class="about-page__title">About FunPower Events</h1>
                 <p class="about-page__text">FunPower Events started in August 2019 with one character, Tinka the Pink Fairy, and one backyard party. Here's how a single costume turned into the Bay Area's go-to party crew.</p>
             </div>
+            <div class="container about-page__photo">
+                <img class="origin-story__photo" src="img/Tinka.png" alt="Tinka the Pink Fairy, FunPower Events' founding character" loading="lazy">
+            </div>
         </section>
 
         <section class="origin-story" id="originStory">
             <div class="origin-story__bg"></div>
             <div class="container origin-story__grid">
-                <img class="origin-story__photo" src="img/Tinka.png" alt="Tinka the Pink Fairy, FunPower Events' founding character" loading="lazy">
                 <div class="origin-story__content">
+                    <h2 class="about-page__section-title">How It All Started</h2>
                     <p class="origin-story__text">It started in August 2019, seven years ago now, with one character, Tinka the Pink Fairy, and one backyard party. Before any of this, Valentyna was studying psychology and raising two young kids of her own. She kept running into the same problem most Bay Area parents do: party options that were either overpriced, forgettable, or both. Someone in a costume for twenty minutes, a few photos, gone.</p>
                     <p class="origin-story__text">So she put together the first character herself and brought her to a backyard birthday party. No launch, no marketing plan. Just one event, and a kid who wouldn't stop talking about it for a week.</p>
-                    <p class="origin-story__text">That was more or less the whole business model: make it good enough that people tell their friends.</p>
                 </div>
             </div>
-            <div class="container growth-stats__grid">
+
+            <div class="growth-stats__carousel">
+                <div class="growth-stats__track" id="growthPhotosTrack">
+                    <img src="img/gallery/3.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
+                    <img src="img/gallery/7.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
+                    <img src="img/gallery/11.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
+                    <img src="img/gallery/5.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
+                </div>
+                <div class="growth-stats__controls">
+                    <button type="button" class="growth-stats__arrow growth-stats__arrow--prev" aria-label="Previous photo">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="growth-stats__dots" id="growthPhotosDots"></div>
+                    <button type="button" class="growth-stats__arrow growth-stats__arrow--next" aria-label="Next photo">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="container origin-story__grid">
+                <div class="origin-story__content">
+                    <p class="origin-story__text">That was more or less the whole business model: make it good enough that people tell their friends.</p>
+                </div>
                 <div class="growth-stats__content">
                     <p class="growth-stats__text">Word got around, and Tinka needed backup. Valentyna started bringing on entertainers who actually liked working with kids, not just people who liked wearing a costume. Seven years later, that's grown into a full team running six kinds of events, with 3,000+ parties booked and 40,000+ kids who've met a character, dodged a foam cannon, or taken a laser tag hit in their own backyard.</p>
-                </div>
-                <div class="growth-stats__carousel">
-                    <div class="growth-stats__track" id="growthPhotosTrack">
-                        <img src="img/gallery/3.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
-                        <img src="img/gallery/7.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
-                        <img src="img/gallery/11.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
-                        <img src="img/gallery/5.jpg" alt="Kids at a FunPower Events party" loading="lazy" draggable="false">
-                    </div>
-                    <div class="growth-stats__controls">
-                        <button type="button" class="growth-stats__arrow growth-stats__arrow--prev" aria-label="Previous photo">
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                        <div class="growth-stats__dots" id="growthPhotosDots"></div>
-                        <button type="button" class="growth-stats__arrow growth-stats__arrow--next" aria-label="Next photo">
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                    </div>
                 </div>
             </div>
             <div class="container growth-stats__numbers">
@@ -92,7 +99,7 @@
             </div>
             <div class="container services-page__grid">
                 <div class="services-page__card service-card--fuchsia">
-                    <img class="services-page__card-photo" src="img/web/party.jpg" alt="Kids party in action" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="kids-parties.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo" src="img/web/party.jpg" alt="Kids party in action" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Kids' Parties</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -102,7 +109,7 @@
                     </div>
                 </div>
                 <div class="services-page__card service-card--sky">
-                    <img class="services-page__card-photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="foam-party.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo" src="img/web/foam.jpg" alt="Kids playing in foam party" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Foam Party</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -112,7 +119,7 @@
                     </div>
                 </div>
                 <div class="services-page__card service-card--plum">
-                    <img class="services-page__card-photo img--top" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="mobile-laser-tag.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo img--top" src="img/web/tag.jpg" alt="Kid running with laser tag gun" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Mobile Laser Tag</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -122,7 +129,7 @@
                     </div>
                 </div>
                 <div class="services-page__card service-card--teal">
-                    <img class="services-page__card-photo img--top" src="img/web/nerf.jpg" alt="Kid with Nerf blaster gear" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="nerf-battles.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo img--top" src="img/web/nerf.jpg" alt="Kid with Nerf blaster gear" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Nerf Battles</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -132,7 +139,7 @@
                     </div>
                 </div>
                 <div class="services-page__card service-card--orange">
-                    <img class="services-page__card-photo" src="img/web/halloween.jpg" alt="Kids in Halloween costumes at a spooky party" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="halloween-parties.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo" src="img/web/halloween.jpg" alt="Kids in Halloween costumes at a spooky party" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Halloween Parties</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -142,7 +149,7 @@
                     </div>
                 </div>
                 <div class="services-page__card service-card--raspberry">
-                    <img class="services-page__card-photo" src="img/web/seasonal.jpg" alt="Kids celebrating a seasonal party" loading="lazy" draggable="false">
+                    <a class="services-page__card-photo-link" href="seasonal-parties.html" tabindex="-1" aria-hidden="true"><img class="services-page__card-photo" src="img/web/seasonal.jpg" alt="Kids celebrating a seasonal party" loading="lazy" draggable="false"></a>
                     <span class="service-card__title">Seasonal Parties</span>
                     <div class="service-card__footer">
                         <div class="service-card__info">
@@ -239,7 +246,7 @@
             <div class="container qa-cta__inner">
                 <h2 class="qa-cta__title">Have a question or a wild idea?</h2>
                 <a class="qa__more-link" href="contact.html">
-                    <span>Reach out →</span>
+                    <span>Reach out</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
             </div>
         </section>
