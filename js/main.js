@@ -229,6 +229,7 @@
 	const prevBtn = document.querySelector('.services__arrow--prev');
 	const nextBtn = document.querySelector('.services__arrow--next');
 	const dotsWrap = document.getElementById('servicesDots');
+	if (!prevBtn || !nextBtn || !dotsWrap) return;
 
 	let index = realCount;
 
