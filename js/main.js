@@ -259,6 +259,57 @@
 		});
 	}
 
+	const PHOTO_CYCLE_MS = 3000;
+	document.documentElement.style.setProperty('--photo-cycle-ms', `${PHOTO_CYCLE_MS}ms`);
+	let activeCycleCard = null;
+	let activeCycleTimer = null;
+
+	function setBarFilling(card, filling) {
+		const fill = card.querySelector('.service-card__photo-bar-fill');
+		if (!fill) return;
+		fill.classList.remove('is-filling');
+		if (!filling) return;
+		void fill.offsetWidth;
+		fill.classList.add('is-filling');
+	}
+
+	function stopPhotoCycle() {
+		if (activeCycleTimer) {
+			clearInterval(activeCycleTimer);
+			activeCycleTimer = null;
+		}
+		if (activeCycleCard) {
+			const photos = activeCycleCard.querySelectorAll('.service-card__photo');
+			photos.forEach((photo, i) => photo.classList.toggle('is-shown', i === 0));
+			setBarFilling(activeCycleCard, false);
+			activeCycleCard = null;
+		}
+	}
+
+	function startPhotoCycle(card) {
+		const photos = card.querySelectorAll('.service-card__photo');
+		if (photos.length <= 1) return;
+		activeCycleCard = card;
+		let photoIndex = 0;
+		setBarFilling(card, true);
+		activeCycleTimer = setInterval(() => {
+			photoIndex = (photoIndex + 1) % photos.length;
+			photos.forEach((photo, i) => photo.classList.toggle('is-shown', i === photoIndex));
+			setBarFilling(card, true);
+		}, PHOTO_CYCLE_MS);
+	}
+
+	function updateActiveCard() {
+		const total = allItems.length;
+		const activeIdx = ((index % total) + total) % total;
+		const activeCard = allItems[activeIdx];
+		allItems.forEach((item) => item.classList.toggle('is-active', item === activeCard));
+		if (activeCard !== activeCycleCard) {
+			stopPhotoCycle();
+			startPhotoCycle(activeCard);
+		}
+	}
+
 	function setPosition(animate) {
 		track.style.transition = animate ? '' : 'none';
 		const containerWidth = track.parentElement.getBoundingClientRect().width;
@@ -270,6 +321,7 @@
 			track.style.transition = '';
 		}
 		renderDots();
+		updateActiveCard();
 	}
 
 	function handleTransitionEnd(e) {
@@ -404,6 +456,33 @@
 })();
 
 (function () {
+	const PHOTO_CYCLE_MS = 3000;
+	document.documentElement.style.setProperty('--photo-cycle-ms', `${PHOTO_CYCLE_MS}ms`);
+
+	document.querySelectorAll('.service-page__photo-wrap').forEach((wrap) => {
+		const photos = wrap.querySelectorAll('.service-page__photo');
+		if (photos.length <= 1) return;
+
+		const bar = wrap.querySelector('.service-page__photo-bar-fill');
+		function setBarFilling(filling) {
+			if (!bar) return;
+			bar.classList.remove('is-filling');
+			if (!filling) return;
+			void bar.offsetWidth;
+			bar.classList.add('is-filling');
+		}
+
+		let photoIndex = 0;
+		setBarFilling(true);
+		setInterval(() => {
+			photoIndex = (photoIndex + 1) % photos.length;
+			photos.forEach((photo, i) => photo.classList.toggle('is-shown', i === photoIndex));
+			setBarFilling(true);
+		}, PHOTO_CYCLE_MS);
+	});
+})();
+
+(function () {
 	const scrollBtn = document.getElementById('heroScrollBtn');
 	const target = document.querySelector('.services__title') || document.getElementById('services');
 	if (!scrollBtn || !target) return;
@@ -423,6 +502,23 @@
 
 	observer.observe(target);
 })();
+
+document.querySelectorAll('.service-page__scroll-btn').forEach((btn) => {
+	const targetSelector = btn.getAttribute('data-scroll-target');
+	const target = targetSelector ? document.querySelector(targetSelector) : null;
+	if (!target) return;
+
+	btn.addEventListener('click', () => {
+		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	});
+
+	function updateVisibility() {
+		btn.classList.toggle('is-hidden', window.scrollY > 0);
+	}
+
+	updateVisibility();
+	window.addEventListener('scroll', updateVisibility, { passive: true });
+});
 
 function whenFontsReady(callback) {
 	if (document.fonts && document.fonts.ready) {

@@ -36,62 +36,60 @@
                     <h2 class="contact__title">Get In Touch</h2>
                     <p class="contact__text">Have An Idea? Let's Chat</p>
                 </div>
-                <div class="contact__layout">
-                    <form class="contact__form" novalidate>
-                        <div class="contact__row">
-                            <div class="contact__field">
-                                <input id="firstName" name="firstName" type="text" placeholder="First Name" aria-label="First Name" required>
-                            </div>
-                            <div class="contact__field">
-                                <input id="lastName" name="lastName" type="text" placeholder="Last Name" aria-label="Last Name" required>
-                            </div>
-                        </div>
-                        <div class="contact__row">
-                            <div class="contact__field">
-                                <input id="email" name="email" type="email" placeholder="Email" aria-label="Email" required>
-                            </div>
-                            <div class="contact__field">
-                                <input id="phone" name="phone" type="tel" placeholder="Phone" aria-label="Phone" required>
-                            </div>
+                <form class="contact__form" novalidate>
+                    <div class="contact__row">
+                        <div class="contact__field">
+                            <input id="firstName" name="firstName" type="text" placeholder="First Name" aria-label="First Name" required>
                         </div>
                         <div class="contact__field">
-                            <div class="select-custom" data-select>
-                                <button type="button" class="select-custom__trigger" aria-haspopup="listbox" aria-expanded="false">
-                                    <span class="select-custom__value is-placeholder" data-select-value>Select a service…</span>
-                                    <svg class="select-custom__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </button>
-                                <ul class="select-custom__options" role="listbox">
-                                    <li class="select-custom__option is-selected" role="option" data-value="" aria-selected="true">Select a service…</li>
-                                    <li class="select-custom__option" role="option" data-value="Kids Parties">Kids Parties</li>
-                                    <li class="select-custom__option" role="option" data-value="Foam Party">Foam Party</li>
-                                    <li class="select-custom__option" role="option" data-value="Mobile Laser Tag">Mobile Laser Tag</li>
-                                    <li class="select-custom__option" role="option" data-value="UV Paint">UV Paint</li>
-                                    <li class="select-custom__option" role="option" data-value="Nerf Battles">Nerf Battles</li>
-                                    <li class="select-custom__option" role="option" data-value="Halloween Parties">Halloween Parties</li>
-                                    <li class="select-custom__option" role="option" data-value="Christmas Parties">Christmas Parties</li>
-                                    <li class="select-custom__option" role="option" data-value="Seasonal Parties">Seasonal Parties</li>
-                                </ul>
-                                <input type="hidden" id="service" name="service" aria-label="Service" required>
-                            </div>
+                            <input id="lastName" name="lastName" type="text" placeholder="Last Name" aria-label="Last Name" required>
                         </div>
-                        <div class="contact__row">
-                            <div class="contact__field">
-                                <input id="date" name="date" type="date" aria-label="Event Date" required>
-                            </div>
-                            <div class="contact__field">
-                                <input id="location" name="location" type="text" placeholder="City or zip code" aria-label="Location" required>
-                            </div>
+                    </div>
+                    <div class="contact__row">
+                        <div class="contact__field">
+                            <input id="email" name="email" type="email" placeholder="Email" aria-label="Email" required>
                         </div>
                         <div class="contact__field">
-                            <textarea id="message" name="message" rows="1" placeholder="Tell us about your event…" aria-label="Message" required></textarea>
+                            <input id="phone" name="phone" type="tel" placeholder="Phone" aria-label="Phone" required>
                         </div>
-                        <button class="qa__more-link contact__submit" type="submit">
-                            <span>Send Message</span>
-                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </button>
-                        <p class="contact__note">* All fields are required</p>
-                    </form>
-                </div>
+                    </div>
+                    <div class="contact__field">
+                        <div class="select-custom" data-select>
+                            <button type="button" class="select-custom__trigger" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="select-custom__value is-placeholder" data-select-value>Select a service…</span>
+                                <svg class="select-custom__arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                            <ul class="select-custom__options" role="listbox">
+                                <li class="select-custom__option is-selected" role="option" data-value="" aria-selected="true">Select a service…</li>
+                                <li class="select-custom__option" role="option" data-value="Kids Parties">Kids Parties</li>
+                                <li class="select-custom__option" role="option" data-value="Foam Party">Foam Party</li>
+                                <li class="select-custom__option" role="option" data-value="Mobile Laser Tag">Mobile Laser Tag</li>
+                                <li class="select-custom__option" role="option" data-value="UV Paint">UV Paint</li>
+                                <li class="select-custom__option" role="option" data-value="Nerf Battles">Nerf Battles</li>
+                                <li class="select-custom__option" role="option" data-value="Halloween Parties">Halloween Parties</li>
+                                <li class="select-custom__option" role="option" data-value="Christmas Parties">Christmas Parties</li>
+                                <li class="select-custom__option" role="option" data-value="Seasonal Parties">Seasonal Parties</li>
+                            </ul>
+                            <input type="hidden" id="service" name="service" aria-label="Service" required>
+                        </div>
+                    </div>
+                    <div class="contact__row">
+                        <div class="contact__field">
+                            <input id="date" name="date" type="date" aria-label="Event Date" required>
+                        </div>
+                        <div class="contact__field">
+                            <input id="location" name="location" type="text" placeholder="City or zip code" aria-label="Location" required>
+                        </div>
+                    </div>
+                    <div class="contact__field">
+                        <textarea id="message" name="message" rows="1" placeholder="Tell us about your event…" aria-label="Message" required></textarea>
+                    </div>
+                    <button class="qa__more-link contact__submit" type="submit">
+                        <span>Send Message</span>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <p class="contact__note">* All fields are required</p>
+                </form>
             </div>
         </section>
     </main>
