@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nerf Battles — FunPower Events</title>
+    <title>Nerf Battles | FunPower Events</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -35,28 +35,26 @@
     </header>
 
     <main>
-        <section class="service-page">
+        <section class="service-page service-page--overview">
             <div class="container service-page__header">
                 <h1 class="about-page__title">Nerf Battles</h1>
-                <p class="service-page__text">Full tactical gear and a battlefield of inflatable bunkers turn any backyard into a Nerf battle arena, blasters and all.</p>
             </div>
 
             <div class="container service-page__photo-wrap">
-                <img class="service-page__photo img--top is-shown" src="img/web/nerf.jpg" alt="Kid with Nerf blaster gear" loading="lazy">
+                <img class="service-page__photo is-shown" src="img/nerf/card/nerf-card.webp" alt="Kid with Nerf blaster gear" loading="lazy">
+                <img class="service-page__photo" src="img/nerf/card/nerf-2.webp" alt="" loading="lazy">
+                <img class="service-page__photo" src="img/nerf/card/nerf-3.webp" alt="" loading="lazy">
+                <div class="service-page__photo-bar" aria-hidden="true"><span class="service-page__photo-bar-fill"></span></div>
             </div>
 
-            <div class="container service-page__values">
-                <div class="service-page__value service-page__value--raspberry">
-                    <h3>Blasters For Everyone</h3>
-                    <p>We bring enough Nerf blasters and eye protection for the whole guest list.</p>
-                </div>
-                <div class="service-page__value service-page__value--sky">
-                    <h3>Obstacle Course Included</h3>
-                    <p>Inflatable bunkers and barriers create a real battlefield layout for cover and strategy.</p>
-                </div>
-                <div class="service-page__value service-page__value--mint">
-                    <h3>Hosted Rounds</h3>
-                    <p>Our host runs organized rounds so kids of every age can jump in and play safely.</p>
+        </section>
+
+        <section class="service-overview" id="serviceOverview">
+            <div class="service-overview__bg"></div>
+            <div class="container service-page__overview">
+                <p class="service-page__text service-page__story">Get ready for an adrenaline-fueled, action-packed Nerf party delivered straight to your location! We bring a massive arsenal of Nerf blasters, full tactical gear, and a high-energy soundscape to transform your backyard, park, or venue into an epic battle zone.</p>
+                <div class="service-page__note">
+                    <a class="qa__more-link" href="contact.html"><span>Book a Party</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
             </div>
         </section>
@@ -70,10 +68,12 @@
                 <div class="social__gallery">
                     <div class="social__row">
                         <div class="social__track" id="socialTrackTop">
-                            <img class="social__tile" src="img/gallery/tiny/5.jpg" data-src="img/gallery/5.jpg" alt="Kids ready for Nerf battle">
-                            <img class="social__tile" src="img/gallery/tiny/6.jpg" data-src="img/gallery/6.jpg" alt="Kids at Nerf battle bunker">
-                            <img class="social__tile" src="img/gallery/tiny/7.jpg" data-src="img/gallery/7.jpg" alt="Kids running in Nerf battle">
-                            <img class="social__tile" src="img/gallery/tiny/8.jpg" data-src="img/gallery/8.jpg" alt="Kid running with Nerf blaster">
+                            <img class="social__tile" src="img/nerf/card/tiny/nerf-card.webp" data-src="img/nerf/card/nerf-card.webp" alt="Kids aiming Nerf blasters in tactical vests">
+                            <img class="social__tile" src="img/nerf/card/tiny/nerf-2.webp" data-src="img/nerf/card/nerf-2.webp" alt="Close-up of a Nerf blaster and dart vest">
+                            <img class="social__tile" src="img/nerf/card/tiny/nerf-3.webp" data-src="img/nerf/card/nerf-3.webp" alt="Two girls in goggles with Nerf blasters">
+                            <img class="social__tile" src="img/gallery/tiny/gallery-02.webp" data-src="img/gallery/gallery-02.webp" alt="Boy in goggles and a Nerf dart vest">
+                            <img class="social__tile" src="img/gallery/tiny/gallery-05.webp" data-src="img/gallery/gallery-05.webp" alt="Excited kid with goggles on his head">
+                            <img class="social__tile" src="img/gallery/tiny/gallery-11.webp" data-src="img/gallery/gallery-11.webp" alt="Kids and a dad playing a Nerf battle">
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,27 @@
         <section class="service-about" id="serviceAbout">
             <div class="service-about__bg"></div>
             <div class="container service-about__inner">
-                <p class="about__text">Get ready for an adrenaline-fueled, action-packed Nerf party delivered straight to your location! We bring a massive arsenal of Nerf blasters, full tactical gear, and a high-energy soundscape to transform your backyard, park, or venue into an epic battle zone.</p>
+                <p class="service-page__text service-page__lead">Full tactical gear and a battlefield of inflatable bunkers turn any backyard into a Nerf battle arena, blasters and all.</p>
+                <div class="service-page__panel">
+                    <div class="service-page__values">
+                        <div class="service-page__value service-page__value--raspberry">
+                            <h3>Blasters For Everyone</h3>
+                            <p>We bring enough Nerf blasters and eye protection for the whole guest list.</p>
+                        </div>
+                        <div class="service-page__value service-page__value--sky">
+                            <h3>Obstacle Course Included</h3>
+                            <p>Inflatable bunkers and barriers create a real battlefield layout for cover and strategy.</p>
+                        </div>
+                        <div class="service-page__value service-page__value--mint">
+                            <h3>Hosted Rounds</h3>
+                            <p>Our host runs organized rounds so kids of every age can jump in and play safely.</p>
+                        </div>
+                    </div>
+                    <div class="service-page__note">
+                        <h3>Want to add more?</h3>
+                        <p>Ice cream, cotton candy, extended battle time, or a foam party to cool off after the battle can be added to any Nerf package.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -93,7 +113,7 @@
                     <h2 class="qa__title">Questions &amp; Answers</h2>
                     <p class="qa__text">Nerf Battles FAQs</p>
                 </div>
-                <div class="service-qa service-qa--vanilla">
+                <div class="service-qa service-qa--lines">
                     <div class="qa__group is-expanded">
                         <div class="qa__group-body">
                             <div class="qa__list">
@@ -104,7 +124,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>Yes — every player gets proper eye protection along with the rest of the tactical gear before the battle starts.</p>
+                                            <p>Yes, every player gets proper eye protection along with the rest of the tactical gear before the battle starts.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -115,7 +135,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>We bring a full arsenal sized to your group — just share your headcount when booking and we'll make sure everyone's armed.</p>
+                                            <p>We bring a full arsenal sized to your group. Just share your headcount when booking and we'll make sure everyone's armed.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -126,7 +146,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>Both — we adapt the inflatable bunkers and battle layout to your backyard, a park, or an indoor venue.</p>
+                                            <p>Both, we adapt the inflatable bunkers and battle layout to your backyard, a park, or an indoor venue.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -137,7 +157,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>Nerf Battles work for a wide age range — we adjust the gear and pacing so younger and older kids can both jump in.</p>
+                                            <p>Nerf Battles work for a wide age range. We adjust the gear and pacing so younger and older kids can both jump in.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -152,7 +172,7 @@
             </div>
         </section>
 
-        <section class="qa-cta" id="qaCta">
+        <section class="qa-cta qa-cta--yellow" id="qaCta">
             <div class="qa-cta__bg"></div>
             <div class="container qa-cta__inner">
                 <h2 class="qa-cta__title">Ready to plan the party?</h2>
@@ -191,7 +211,7 @@
                     </div>
                     <div class="footer__col">
                         <h3 class="footer__col-title">Availability</h3>
-                        <span>Every day, 9am&nbsp;–&nbsp;9pm</span>
+                        <span>Every day, 9am&nbsp;-&nbsp;9pm</span>
                         <span>SF Bay Area</span>
                     </div>
                     <div class="footer__col">

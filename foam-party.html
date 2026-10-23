@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foam Party — FunPower Events</title>
+    <title>Foam Party | FunPower Events</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -35,7 +35,7 @@
     </header>
 
     <main>
-        <section class="service-page">
+        <section class="service-page service-page--overview">
             <div class="container service-page__header">
                 <h1 class="about-page__title">Foam Party</h1>
             </div>
@@ -48,21 +48,15 @@
                 <div class="service-page__photo-bar" aria-hidden="true"><span class="service-page__photo-bar-fill"></span></div>
             </div>
 
-            <div class="service-page__scroll">
-                <button type="button" class="hero__scroll-btn service-page__scroll-btn" data-scroll-target="#serviceAbout" aria-label="Scroll down">
-                    <svg class="hero__scroll-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4V20M12 20L6 14M12 20L18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </button>
-            </div>
         </section>
 
-        <section class="service-about" id="serviceAbout">
-            <div class="service-about__bg"></div>
-            <div class="container service-about__inner">
-                <p class="about__text">Looking for a fun and relaxing way to cool off and entertain guests of all ages? Our foam parties create a soft, fluffy sea of bubbles that's perfect for dancing, laughing, and enjoying the moment. Kids can play and splash safely, while adults kick back and enjoy the light, clean foam drifting through the air. It's a great way to bring people together, whether for a birthday, summer gathering, or just because. No stress, no mess, just simple, refreshing fun in every bubble.</p>
-                <a class="qa__more-link" href="contact.html">
-                    <span>Book This Party</span>
-                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
+        <section class="service-overview" id="serviceOverview">
+            <div class="service-overview__bg"></div>
+            <div class="container service-page__overview">
+                <p class="service-page__text service-page__story">Looking for a fun and relaxing way to cool off and entertain guests of all ages? Our foam parties create a soft, fluffy sea of bubbles that's perfect for dancing, laughing, and enjoying the moment. Kids can play and splash safely, while adults kick back and enjoy the light, clean foam drifting through the air. It's a great way to bring people together, whether for a birthday, summer gathering, or just because. No stress, no mess, just simple, refreshing fun in every bubble.</p>
+                <div class="service-page__note">
+                    <a class="qa__more-link" href="contact.html"><span>Book a Party</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                </div>
             </div>
         </section>
 
@@ -90,23 +84,29 @@
             </div>
         </section>
 
-        <section class="service-page">
-            <div class="container service-page__header service-page__header--text">
-                <p class="service-page__text">We bring the foam machine, build a backyard-sized mountain of bubbles, and let the kids dive right in.</p>
-            </div>
-
-            <div class="container service-page__values">
-                <div class="service-page__value service-page__value--raspberry">
-                    <h3>Kid-Safe Foam</h3>
-                    <p>High-capacity foam machine system</p>
-                </div>
-                <div class="service-page__value service-page__value--sky">
-                    <h3>We Bring Everything</h3>
-                    <p>Premium sound system playing upbeat dance music</p>
-                </div>
-                <div class="service-page__value service-page__value--mint">
-                    <h3>Easy Cleanup</h3>
-                    <p>Interactive inflatable party toys</p>
+        <section class="service-about" id="serviceAbout">
+            <div class="service-about__bg"></div>
+            <div class="container service-about__inner">
+                <p class="service-page__text service-page__lead">We bring the foam machine, build a backyard-sized mountain of bubbles, and let the kids dive right in.</p>
+                <div class="service-page__panel">
+                    <div class="service-page__values">
+                        <div class="service-page__value service-page__value--raspberry">
+                            <h3>Kid-Safe Foam</h3>
+                            <p>High-capacity foam machine system</p>
+                        </div>
+                        <div class="service-page__value service-page__value--sky">
+                            <h3>We Bring Everything</h3>
+                            <p>Premium sound system playing upbeat dance music</p>
+                        </div>
+                        <div class="service-page__value service-page__value--mint">
+                            <h3>Easy Cleanup</h3>
+                            <p>Interactive inflatable party toys</p>
+                        </div>
+                    </div>
+                    <div class="service-page__note">
+                        <h3>Want to add more?</h3>
+                        <p>Ice cream, cotton candy, a character entertainer, extended foam time, or a round of laser tag can be added to any foam party.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -117,7 +117,7 @@
                     <h2 class="qa__title">Questions &amp; Answers</h2>
                     <p class="qa__text">Foam Party FAQs</p>
                 </div>
-                <div class="service-qa service-qa--sky">
+                <div class="service-qa service-qa--lines">
                     <div class="qa__group is-expanded">
                         <div class="qa__group-body">
                             <div class="qa__list">
@@ -128,7 +128,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>No — our foam is kid-safe and tear-free, and it rinses out clean from clothes, skin, and grass.</p>
+                                            <p>No, our foam is kid-safe and tear-free, and it rinses out clean from clothes, skin, and grass.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -139,7 +139,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>A foam party fits almost any yard, driveway, or open area — just let us know your space when you book.</p>
+                                            <p>A foam party fits almost any yard or open area. Just let us know your space when you book.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -150,7 +150,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>All ages — it's just as popular with adults as it is with kids, so don't be surprised if everyone ends up jumping in.</p>
+                                            <p>All ages! It's just as popular with adults as it is with kids, so don't be surprised if everyone ends up jumping in.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -167,16 +167,16 @@
                                 </article>
                             </div>
                         </div>
-                        <div class="service-qa__cta">
-                            <p class="service-qa__cta-text">Still have questions?</p>
-                            <a class="qa__more-link" href="qa.html"><span>Visit Q&amp;A Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                        </div>
+                    </div>
+                    <div class="service-qa__cta">
+                        <p class="service-qa__cta-text">Still have questions?</p>
+                        <a class="qa__more-link" href="qa.html"><span>Visit Q&amp;A Page</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="qa-cta" id="qaCta">
+        <section class="qa-cta qa-cta--yellow" id="qaCta">
             <div class="qa-cta__bg"></div>
             <div class="container qa-cta__inner">
                 <h2 class="qa-cta__title">Ready to plan the party?</h2>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="footer__col">
                         <h3 class="footer__col-title">Availability</h3>
-                        <span>Every day, 9am&nbsp;–&nbsp;9pm</span>
+                        <span>Every day, 9am&nbsp;-&nbsp;9pm</span>
                         <span>SF Bay Area</span>
                     </div>
                     <div class="footer__col">

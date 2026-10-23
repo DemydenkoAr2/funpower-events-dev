@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UV Paint — FunPower Events</title>
+    <title>UV Paint | FunPower Events</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -35,28 +35,26 @@
     </header>
 
     <main>
-        <section class="service-page">
+        <section class="service-page service-page--overview">
             <div class="container service-page__header">
                 <h1 class="about-page__title">UV Paint</h1>
-                <p class="service-page__text">Step into our giant blacked-out dome for a glow-in-the-dark paint party — UV paint, blacklights, and music turn any celebration into a rave for kids.</p>
             </div>
 
             <div class="container service-page__photo-wrap">
-                <img class="service-page__photo is-shown" src="img/web/uv2.jpg" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy">
+                <img class="service-page__photo is-shown" src="img/uv/card/uv-card.webp" alt="Kid painting with glow-in-the-dark UV paint" loading="lazy">
+                <img class="service-page__photo" src="img/uv/card/uv-2.webp" alt="" loading="lazy">
+                <img class="service-page__photo" src="img/uv/card/uv-3.webp" alt="" loading="lazy">
+                <div class="service-page__photo-bar" aria-hidden="true"><span class="service-page__photo-bar-fill"></span></div>
             </div>
 
-            <div class="container service-page__values">
-                <div class="service-page__value service-page__value--raspberry">
-                    <h3>Glow Everything</h3>
-                    <p>UV-reactive paint, blacklights, and glow accessories light up the whole dome.</p>
-                </div>
-                <div class="service-page__value service-page__value--sky">
-                    <h3>Washable &amp; Safe</h3>
-                    <p>Our paint is non-toxic and washes out of clothes and hair with soap and water.</p>
-                </div>
-                <div class="service-page__value service-page__value--mint">
-                    <h3>Dome Included</h3>
-                    <p>We bring the blacked-out dome tent, so there's no need to darken a room in your house.</p>
+        </section>
+
+        <section class="service-overview" id="serviceOverview">
+            <div class="service-overview__bg"></div>
+            <div class="container service-page__overview">
+                <p class="service-page__text service-page__story">Turn out the lights and crank up the energy! Glo Wild is a fully staffed, multi-sensory interactive festival brought directly to your location. We combine hands-on sensory crafting, custom mixology, and an epic neon paint celebration inside our massive, blacked-out 20x16ft Immersive Glow Dome.</p>
+                <div class="service-page__note">
+                    <a class="qa__more-link" href="contact.html"><span>Book a Party</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                 </div>
             </div>
         </section>
@@ -70,10 +68,12 @@
                 <div class="social__gallery">
                     <div class="social__row">
                         <div class="social__track" id="socialTrackTop">
-                            <img class="social__tile" src="img/gallery/tiny/2.jpg" data-src="img/gallery/2.jpg" alt="Kid covered in foam, smiling">
-                            <img class="social__tile" src="img/gallery/tiny/10.jpg" data-src="img/gallery/10.jpg" alt="Kids with glitter face paint">
-                            <img class="social__tile" src="img/gallery/tiny/11.jpg" data-src="img/gallery/11.jpg" alt="Entertainer with group of girls">
-                            <img class="social__tile" src="img/gallery/tiny/12.jpg" data-src="img/gallery/12.jpg" alt="Kid with birthday cake and costumed entertainer">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-card.webp" data-src="img/uv/card/uv-card.webp" alt="Group of kids in glowing paint-splattered shirts">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-2.webp" data-src="img/uv/card/uv-2.webp" alt="Kids painting with glow-in-the-dark UV paint">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-3.webp" data-src="img/uv/card/uv-3.webp" alt="Glowing UV paint palettes under blacklight">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-card.webp" data-src="img/uv/card/uv-card.webp" alt="Group of kids in glowing paint-splattered shirts">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-2.webp" data-src="img/uv/card/uv-2.webp" alt="Kids painting with glow-in-the-dark UV paint">
+                            <img class="social__tile" src="img/uv/card/tiny/uv-3.webp" data-src="img/uv/card/uv-3.webp" alt="Glowing UV paint palettes under blacklight">
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,27 @@
         <section class="service-about" id="serviceAbout">
             <div class="service-about__bg"></div>
             <div class="container service-about__inner">
-                <p class="about__text">Turn out the lights and crank up the energy! Glo Wild is a fully staffed, multi-sensory interactive festival brought directly to your location. We combine hands-on sensory crafting, custom mixology, and an epic neon paint celebration inside our massive, blacked-out 20x16ft Immersive Glow Dome.</p>
+                <p class="service-page__text service-page__lead">Step into our giant blacked-out dome for a glow-in-the-dark paint party. UV paint, blacklights, and music turn any celebration into a rave for kids.</p>
+                <div class="service-page__panel">
+                    <div class="service-page__values">
+                        <div class="service-page__value service-page__value--raspberry">
+                            <h3>Glow Everything</h3>
+                            <p>UV-reactive paint, blacklights, and glow accessories light up the whole dome.</p>
+                        </div>
+                        <div class="service-page__value service-page__value--sky">
+                            <h3>Washable &amp; Safe</h3>
+                            <p>Our paint is non-toxic and washes out of clothes and hair with soap and water.</p>
+                        </div>
+                        <div class="service-page__value service-page__value--mint">
+                            <h3>Dome Included</h3>
+                            <p>We bring the blacked-out dome tent, so there's no need to darken a room in your house.</p>
+                        </div>
+                    </div>
+                    <div class="service-page__note">
+                        <h3>Want to add more?</h3>
+                        <p>Ice cream, cotton candy, extended glow time, or a character entertainer can be added to any UV Paint party.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -93,7 +113,7 @@
                     <h2 class="qa__title">Questions &amp; Answers</h2>
                     <p class="qa__text">UV Paint FAQs</p>
                 </div>
-                <div class="service-qa service-qa--plum">
+                <div class="service-qa service-qa--lines">
                     <div class="qa__group is-expanded">
                         <div class="qa__group-body">
                             <div class="qa__list">
@@ -104,7 +124,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>No — our UV paint is washable and rinses off easily from skin and most fabrics.</p>
+                                            <p>No, our UV paint is washable and rinses off easily from skin and most fabrics.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -115,7 +135,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>Yes — we bring and set up the full 20x16ft Immersive Glow Dome on-site, no venue booking needed.</p>
+                                            <p>Yes, we bring and set up the full 20x16ft Immersive Glow Dome on-site, no venue booking needed.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -126,7 +146,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>Yes — the paint is non-toxic and appropriate for most ages, and we tailor the sensory activities to the group.</p>
+                                            <p>Yes, the paint is non-toxic and appropriate for most ages, and we tailor the sensory activities to the group.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -137,7 +157,7 @@
                                     </button>
                                     <div class="qa__answer">
                                         <div class="qa__answer-inner">
-                                            <p>We just need enough room to set up the dome — a backyard, driveway, or indoor space all work fine.</p>
+                                            <p>We just need enough room to set up the dome. A backyard or indoor space both work fine.</p>
                                         </div>
                                     </div>
                                 </article>
@@ -152,7 +172,7 @@
             </div>
         </section>
 
-        <section class="qa-cta" id="qaCta">
+        <section class="qa-cta qa-cta--yellow" id="qaCta">
             <div class="qa-cta__bg"></div>
             <div class="container qa-cta__inner">
                 <h2 class="qa-cta__title">Ready to plan the party?</h2>
@@ -191,7 +211,7 @@
                     </div>
                     <div class="footer__col">
                         <h3 class="footer__col-title">Availability</h3>
-                        <span>Every day, 9am&nbsp;–&nbsp;9pm</span>
+                        <span>Every day, 9am&nbsp;-&nbsp;9pm</span>
                         <span>SF Bay Area</span>
                     </div>
                     <div class="footer__col">

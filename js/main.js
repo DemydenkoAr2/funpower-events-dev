@@ -149,6 +149,20 @@
 		document.addEventListener('click', (e) => {
 			if (!wrap.contains(e.target)) close();
 		});
+
+		const form = wrap.closest('form');
+		if (form) {
+			form.addEventListener('reset', () => {
+				options.forEach((o, i) => {
+					o.classList.toggle('is-selected', i === 0);
+					o.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+				});
+				valueEl.textContent = options[0].textContent;
+				valueEl.classList.add('is-placeholder');
+				hiddenInput.value = '';
+				close();
+			});
+		}
 	});
 })();
 
@@ -168,12 +182,28 @@
 		field.addEventListener('change', clear);
 	});
 
-	form.addEventListener('submit', (e) => {
+	const submitBtn = form.querySelector('.contact__submit');
+	const submitLabel = submitBtn.querySelector('span');
+	const status = form.querySelector('.contact__status');
+
+	function isValid(field) {
+		// hidden inputs skip native validation, so check the custom select by hand
+		if (field.type === 'hidden') return !field.required || field.value.trim() !== '';
+		return field.checkValidity();
+	}
+
+	function showStatus(text, type) {
+		status.textContent = text;
+		status.className = `contact__status contact__status--${type}`;
+	}
+
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault();
 		let firstInvalid = null;
 
 		fields.forEach((field) => {
 			const target = invalidTarget(field);
-			if (field.checkValidity()) {
+			if (isValid(field)) {
 				target.classList.remove('is-invalid');
 			} else {
 				target.classList.add('is-invalid');
@@ -182,8 +212,35 @@
 		});
 
 		if (firstInvalid) {
-			e.preventDefault();
 			firstInvalid.focus();
+			return;
+		}
+
+		const data = Object.fromEntries(new FormData(form).entries());
+		const defaultLabel = submitLabel.textContent;
+		submitBtn.disabled = true;
+		submitLabel.textContent = 'Sending…';
+		status.textContent = '';
+		status.className = 'contact__status';
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			});
+			const result = await response.json().catch(() => ({}));
+			if (!response.ok) throw new Error(result.error || 'Something went wrong. Please try again later.');
+
+			form.reset();
+			form.querySelector('textarea')?.dispatchEvent(new Event('input'));
+			showStatus('Thank you! Your message has been sent. We’ll get back to you soon.', 'success');
+		} catch (err) {
+			const offline = err instanceof TypeError;
+			showStatus(offline ? 'Could not send your message. Please call or text us instead.' : err.message, 'error');
+		} finally {
+			submitBtn.disabled = false;
+			submitLabel.textContent = defaultLabel;
 		}
 	});
 })();
@@ -482,27 +539,6 @@
 	});
 })();
 
-(function () {
-	const scrollBtn = document.getElementById('heroScrollBtn');
-	const target = document.querySelector('.services__title') || document.getElementById('services');
-	if (!scrollBtn || !target) return;
-
-	scrollBtn.addEventListener('click', () => {
-		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-	});
-
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				scrollBtn.classList.toggle('is-hidden', entry.isIntersecting);
-			});
-		},
-		{ threshold: 0 }
-	);
-
-	observer.observe(target);
-})();
-
 document.querySelectorAll('.service-page__scroll-btn').forEach((btn) => {
 	const targetSelector = btn.getAttribute('data-scroll-target');
 	const target = targetSelector ? document.querySelector(targetSelector) : null;
@@ -568,12 +604,48 @@ whenFontsReady(() => {
 		(entries) => {
 			entries.forEach((entry) => {
 				originStory.classList.toggle('is-visible', entry.isIntersecting);
+				if (entry.isIntersecting) originStory.classList.add('is-revealed');
 			});
 		},
 		{ threshold: 0.2 }
 	);
 
 	observer.observe(originStory);
+});
+
+whenFontsReady(() => {
+	const followUs = document.getElementById('followUs');
+	if (!followUs) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				followUs.classList.toggle('is-visible', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0.2 }
+	);
+
+	observer.observe(followUs);
+});
+
+whenFontsReady(() => {
+	const whyUs = document.getElementById('whyUs');
+	if (!whyUs) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					whyUs.classList.add('is-visible');
+					observer.disconnect();
+				}
+			});
+		},
+		{ threshold: 0.25 }
+	);
+
+	observer.observe(whyUs);
 });
 
 whenFontsReady(() => {
@@ -590,6 +662,22 @@ whenFontsReady(() => {
 	);
 
 	observer.observe(reviewsBand);
+});
+
+whenFontsReady(() => {
+	const serviceOverview = document.getElementById('serviceOverview');
+	if (!serviceOverview) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				serviceOverview.classList.toggle('is-visible', entry.isIntersecting);
+			});
+		},
+		{ threshold: 0, rootMargin: '-15% 0px -15% 0px' }
+	);
+
+	observer.observe(serviceOverview);
 });
 
 whenFontsReady(() => {
@@ -701,15 +789,13 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 	observer.observe(band);
 })();
 
-(function () {
-	const slider = document.querySelector('.reviews__slider');
-	const track = document.getElementById('reviewsTrack');
-	if (!slider || !track) return;
-
+function enableMarqueeDrag(area, track, pauseBtn) {
 	const HOVER_DELAY = 300;
 	const COAST_DURATION = 450;
 	const TAP_MOVE_THRESHOLD = 6;
 	const TAP_PAUSE_DURATION = 2000;
+	const isReversed = getComputedStyle(track).animationDirection === 'reverse';
+	const direction = isReversed ? 1 : -1;
 
 	let hoverTimer = null;
 	let tapResumeTimer = null;
@@ -728,10 +814,17 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 		return matrix.m41;
 	}
 
+	function wrap(x) {
+		const totalDistance = track.scrollWidth / 2;
+		let wrapped = x % totalDistance;
+		if (wrapped > 0) wrapped -= totalDistance;
+		return wrapped;
+	}
+
 	function freezeAt(x) {
 		savedDuration = parseFloat(getComputedStyle(track).animationDuration) || savedDuration;
 		track.style.transition = 'none';
-		track.style.animation = 'none';
+		track.style.animationName = 'none';
 		track.style.transform = `translateX(${x}px)`;
 		void track.offsetWidth;
 		isStopped = true;
@@ -739,23 +832,15 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 
 	function decelerateToStop() {
 		if (isDragging || isManuallyPaused) return;
-		savedDuration = parseFloat(getComputedStyle(track).animationDuration) || savedDuration;
-		const totalDistance = track.scrollWidth / 2;
 		const startX = getTranslateX(track);
-		const v0 = totalDistance / (savedDuration * 1000);
-
-		track.style.transition = 'none';
-		track.style.animation = 'none';
-		track.style.transform = `translateX(${startX}px)`;
-		void track.offsetWidth;
-		isStopped = true;
-
+		freezeAt(startX);
+		const v0 = (track.scrollWidth / 2) / (savedDuration * 1000);
 		const startTime = performance.now();
 
 		function step(now) {
 			const t = Math.min(now - startTime, COAST_DURATION);
 			const distance = v0 * t - 0.5 * (v0 / COAST_DURATION) * t * t;
-			track.style.transform = `translateX(${startX - distance}px)`;
+			track.style.transform = `translateX(${wrap(startX + direction * distance)}px)`;
 			rafId = t < COAST_DURATION ? requestAnimationFrame(step) : null;
 		}
 		rafId = requestAnimationFrame(step);
@@ -769,26 +854,27 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 			rafId = null;
 		}
 
-		const currentX = getTranslateX(track);
 		const totalDistance = track.scrollWidth / 2;
-		const elapsedRatio = (((-currentX) % totalDistance) + totalDistance) % totalDistance / totalDistance;
-		const elapsedSeconds = elapsedRatio * savedDuration;
+		const progress = -wrap(getTranslateX(track)) / totalDistance;
+		const elapsedRatio = isReversed ? 1 - progress : progress;
 
 		track.style.transition = 'none';
 		track.style.transform = '';
-		track.style.animation = `reviews-marquee ${savedDuration}s linear infinite`;
-		track.style.animationDelay = `-${elapsedSeconds}s`;
+		track.style.animationName = '';
+		track.style.animationDelay = `-${elapsedRatio * savedDuration}s`;
 	}
 
-	slider.addEventListener('mouseenter', () => {
+	area.addEventListener('mouseenter', () => {
 		clearTimeout(hoverTimer);
 		hoverTimer = setTimeout(decelerateToStop, HOVER_DELAY);
 	});
 
-	slider.addEventListener('mouseleave', () => {
+	area.addEventListener('mouseleave', () => {
 		clearTimeout(hoverTimer);
 		if (!isDragging) resumeFromStop();
 	});
+
+	track.addEventListener('dragstart', (e) => e.preventDefault());
 
 	track.addEventListener('pointerdown', (e) => {
 		clearTimeout(hoverTimer);
@@ -812,12 +898,9 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 
 	track.addEventListener('pointermove', (e) => {
 		if (!isDragging) return;
-		const totalDistance = track.scrollWidth / 2;
 		const delta = e.clientX - dragStartX;
 		if (Math.abs(delta) > TAP_MOVE_THRESHOLD) dragMoved = true;
-		let x = (dragStartOffset + delta) % totalDistance;
-		if (x > 0) x -= totalDistance;
-		track.style.transform = `translateX(${x}px)`;
+		track.style.transform = `translateX(${wrap(dragStartOffset + delta)}px)`;
 	});
 
 	function endDrag() {
@@ -826,6 +909,8 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 
 		if (!dragMoved && pointerType === 'touch') {
 			tapResumeTimer = setTimeout(resumeFromStop, TAP_PAUSE_DURATION);
+		} else if (pointerType === 'mouse' && area.matches(':hover')) {
+			return;
 		} else {
 			resumeFromStop();
 		}
@@ -834,7 +919,6 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 	track.addEventListener('pointerup', endDrag);
 	track.addEventListener('pointercancel', endDrag);
 
-	const pauseBtn = document.getElementById('reviewsPauseBtn');
 	if (pauseBtn) {
 		pauseBtn.addEventListener('click', () => {
 			isManuallyPaused = !isManuallyPaused;
@@ -855,6 +939,14 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 			}
 		});
 	}
+}
+
+(function () {
+	const slider = document.querySelector('.reviews__slider');
+	const track = document.getElementById('reviewsTrack');
+	if (!slider || !track) return;
+
+	enableMarqueeDrag(slider, track, document.getElementById('reviewsPauseBtn'));
 })();
 
 (function () {
@@ -871,6 +963,7 @@ function setMarqueeSpeed(track, desktopPxPerSecond, mobilePxPerSecond) {
 		});
 
 		setMarqueeSpeed(track, 65, 25);
+		enableMarqueeDrag(track.parentElement, track);
 	});
 })();
 
